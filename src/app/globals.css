@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.leaflet-container{
+  height: 100vh;
+}
+.border{
+  border-right: solid 1px rgb(185,192,198);
+}
+.text-color{
+  color: rgb(185,192,198);
+}
+.background-oscuro{
+  background-color: rgb(24,30,37);
+}
+.background-claro{
+  background-color: rgb(30,39,49);
+}
+.opacity {
+  background: rgba(20, 20, 20, 0.8);
+}
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
