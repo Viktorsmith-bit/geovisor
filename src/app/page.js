@@ -61,7 +61,7 @@ export default function Home() {
                     map === "1"?<TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}" ext='png' />:null
                 }
         
-               
+               <Departamentos />
                 <AreaInfluenciaAmbientalPoligono />
                 <AreaEfectivaPoligono />
                 <AreaInfluenciaAmbientalPuntos />
