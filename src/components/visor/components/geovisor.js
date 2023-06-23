@@ -4,7 +4,7 @@ export default function Geovisor(){
     return(
         <div className='flex absolute top-3 left-12 z-20 hidden md:flex lg:flex rounded-sm' style={{zIndex:"1000"}}>
             <div className='section' >
-                <Image width={67.5} height={50}  src='/Chinalco.png' />
+                <Image width={67.5} height={50}  src='/Chinalco.png' alt={'Walsh Perú'} />
             </div>
             <div className='flex items-center px-2 bg-white' style={{backgroundColor:'rgb(69, 128, 94)'}}>
                 <div className="section">
