@@ -54,7 +54,6 @@ export default function CalidadAgua(props){
                                     </div>
                                 </div>
                             }
-                            <Input nombre={'EM TA-12'} estado={props.estado.em2018T3} evento={props.openCloseEm2018T3} /> 
                         </div>
                     </div>
                 }
@@ -70,10 +69,7 @@ export default function CalidadAgua(props){
                                         {
                                             sup1.parMic === 'close'?null:<div className="px-6">
                                                 <div className="border-l border-gray-500">
-                                                    <Input nombre={'EM R-2'} estado={state2.eca} evento={''} />
-                                                    <Input nombre={'EM R-3'} estado={state2.eca} evento={''} /> 
-                                                    <Input nombre={'EM R-7'} estado={state2.eca} evento={''} /> 
-                                                    <Input nombre={'EM R-1'} estado={state2.eca} evento={''} />  
+                                                    <Input nombre={'EM R-2'} estado={props.humeda.parMicro} evento={props.openCloseHumParMicro} />
                                                 </div>
                                             </div>
                                         }
@@ -81,9 +77,7 @@ export default function CalidadAgua(props){
                                         {
                                             sup1.parOrg === 'close'?null:<div className="px-6">
                                                 <div className="border-l border-gray-500">
-                                                    <Input nombre={'EM R-2'} estado={state2.eca} evento={''} />
-                                                    <Input nombre={'EM R-3'} estado={state2.eca} evento={''} /> 
-                                                    <Input nombre={'EM R-1'} estado={state2.eca} evento={''} />  
+                                                    <Input nombre={'EM R-2'} estado={props.humeda.parOrg} evento={props.openCloseHumParOrg} />
                                                 </div>
                                             </div>
                                         }
@@ -91,10 +85,7 @@ export default function CalidadAgua(props){
                                         {
                                             sup1.parFis === 'close'?null:<div className="px-6">
                                                 <div className="border-l border-gray-500">
-                                                    <Input nombre={'EM R-2'} estado={state2.eca} evento={''} />
-                                                    <Input nombre={'EM R-3'} estado={state2.eca} evento={''} /> 
-                                                    <Input nombre={'EM R-7'} estado={state2.eca} evento={''} /> 
-                                                    <Input nombre={'EM R-1'} estado={state2.eca} evento={''} />  
+                                                    <Input nombre={'EM R-2'} estado={props.humeda.parFis} evento={props.openCloseHumParFis} />
                                                 </div>
                                             </div>
                                         }
@@ -102,10 +93,7 @@ export default function CalidadAgua(props){
                                         {
                                             sup1.parIn === 'close'?null:<div className="px-6">
                                                 <div className="border-l border-gray-500">
-                                                    <Input nombre={'EM R-2'} estado={state2.eca} evento={''} />
-                                                    <Input nombre={'EM R-3'} estado={state2.eca} evento={''} /> 
-                                                    <Input nombre={'EM R-7'} estado={state2.eca} evento={''} /> 
-                                                    <Input nombre={'EM R-1'} estado={state2.eca} evento={''} />  
+                                                    <Input nombre={'EM R-2'} estado={props.humeda.parIn} evento={props.openCloseHumParIn} />
                                                 </div>
                                             </div> 
                                         }
@@ -113,10 +101,7 @@ export default function CalidadAgua(props){
                                         {
                                             sup1.parIno === 'close'?null:<div className="px-6">
                                                 <div className="border-l border-gray-500">
-                                                    <Input nombre={'EM R-2'} estado={state2.eca} evento={''} />
-                                                    <Input nombre={'EM R-3'} estado={state2.eca} evento={''} /> 
-                                                    <Input nombre={'EM R-7'} estado={state2.eca} evento={''} /> 
-                                                    <Input nombre={'EM R-1'} estado={state2.eca} evento={''} />  
+                                                    <Input nombre={'EM R-2'} estado={props.humeda.parIno} evento={props.openCloseHumParIno} />
                                                 </div>
                                             </div>
                                         }
