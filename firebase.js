@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { getAuth} from "firebase/auth";
 
 const quaterneryAppConfig = {
     apiKey: "AIzaSyBkw9Qp-kSeEdm-zQ5_pM4kErctxRo_qZo",
@@ -15,3 +16,4 @@ const quaterneryAppConfig = {
 const quaterneryApp = initializeApp(quaterneryAppConfig, 'quaternery');
 
 export const app =  getDatabase(quaterneryApp);
+export const auth = getAuth(quaterneryApp);

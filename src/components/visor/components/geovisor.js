@@ -6,10 +6,10 @@ export default function Geovisor(){
             <div className='section' >
                 <Image width={67.5} height={50}  src='/Chinalco.png' alt={'Walsh Perú'} />
             </div>
-            <div className='flex items-center px-2 bg-white' style={{backgroundColor:'rgb(69, 128, 94)'}}>
+            <div className='flex items-center px-2 back-color'>
                 <div className="section">
-                    <h1 className='text-xs'>MINERA TOROMOCHO</h1>
-                    <h1 className='font-bold'>GEOVISOR PARA LA GESTIÓN MINERA</h1>
+                    <h1 className='text-xs text-white'>MINERA TOROMOCHO</h1>
+                    <h1 className='font-bold text-white'>GEOVISOR PARA LA GESTIÓN MINERA</h1>
                 </div>
             </div>
         </div>

@@ -1,36 +1,44 @@
 'use client'
 import { useState } from "react";
+import Image from 'next/image';
+import Link from 'next/link';
 import {MapContainer, TileLayer} from "react-leaflet";
-import Aside from "../components/visor/aside/asideRight";
+import { ImageMapLayer, FeatureLayer } from "react-esri-leaflet";
+import EsriLeafletGeoSearch from "react-esri-leaflet/plugins/EsriLeafletGeoSearch";
+import SearchButton from '../../components/visor/components/search';
+import Control from '../../components/visor/components/control';
+import Aside from "../../components/visor/aside/asideRight";
+
 import Geovisor from "@/components/visor/components/geovisor";
 import Mensaje from "@/components/visor/components/mensaje";
-import Departamentos from "../components/visor/database/departamentos"
-import AreaEfectivaPoligono from "../components/visor/database/area_efectiva/area_efectiva_poligono"
-import AreaInfluenciaAmbientalPoligono from "../components/visor/database/area_influencia/area_influencia_poligono";
+import Departamentos from "../../components/visor/database/departamentos"
+import AreaEfectivaPoligono from "../../components/visor/database/area_efectiva/area_efectiva_poligono"
+import AreaInfluenciaAmbientalPoligono from "../../components/visor/database/area_influencia/area_influencia_poligono";
 import AreaEfectivaPuntos from "@/components/visor/database/area_efectiva/area_efectiva_puntos";
 import AreaInfluenciaAmbientalPuntos from "@/components/visor/database/area_influencia/area_influencia_puntos";
 import Em2016T2 from "@/components/visor/database/agua_subterranea/em_2016_t2";
 import Em2017T2 from "@/components/visor/database/agua_subterranea/em_2017_t2";
 import Em2018T1 from "@/components/visor/database/agua_subterranea/em_2018_t1";
 import Em2018T3 from "@/components/visor/database/agua_subterranea/em_2018_t3";
-import HumedaParMicro from '../components/visor/database/agua_superficial/temp_humeda/parmicro_em_mar_2019';
-import HumedaParOrg from '../components/visor/database/agua_superficial/temp_humeda/parorg_em_mar_2019';
-import HumedaParFis from '../components/visor/database/agua_superficial/temp_humeda/parfis_em_mar_2019';
-import HumedaParIn from '../components/visor/database/agua_superficial/temp_humeda/parin_em_mar_2019';
-import HumedaParIno from '../components/visor/database/agua_superficial/temp_humeda/parino_em_mar_2019';
+import HumedaParMicro from '../../components/visor/database/agua_superficial/temp_humeda/parmicro_em_mar_2019';
+import HumedaParOrg from '../../components/visor/database/agua_superficial/temp_humeda/parorg_em_mar_2019';
+import HumedaParFis from '../../components/visor/database/agua_superficial/temp_humeda/parfis_em_mar_2019';
+import HumedaParIn from '../../components/visor/database/agua_superficial/temp_humeda/parin_em_mar_2019';
+import HumedaParIno from '../../components/visor/database/agua_superficial/temp_humeda/parino_em_mar_2019';
 
 export default function Home() {
     const [map, setMap] = useState(1)
+    const [log, setLog] = useState('close')
     const [pdf, setPdf] = useState(false)
     const [estado, setEstado] = useState({em2016T2:'close', em2017T2:'close', em2018T1:'close', em2018T3:'close'})
     const [humeda, setHumeda] = useState({parMicro:'close', parOrg:'close', parFis:'close', parIn:'close', parIno:'close'})
     const [seca, setSeca] = useState({parMicro:'close', parOrg:'close', parFis:'close', parIn:'close', parIno:'close'})
 
     function openCloseHumParMicro(e){e.preventDefault(), setHumeda({...humeda, parMicro:humeda.parMicro === 'open'?'close':'open'})}
-    function openCloseHumParOrg(e){e.preventDefault(), setHumeda({...humeda, parMicro:humeda.parMicro === 'open'?'close':'open'})}
-    function openCloseHumParFis(e){e.preventDefault(), setHumeda({...humeda, parMicro:humeda.parMicro === 'open'?'close':'open'})}
-    function openCloseHumParIn(e){e.preventDefault(), setHumeda({...humeda, parMicro:humeda.parMicro === 'open'?'close':'open'})}
-    function openCloseHumParIno(e){e.preventDefault(), setHumeda({...humeda, parMicro:humeda.parMicro === 'open'?'close':'open'})}
+    function openCloseHumParOrg(e){e.preventDefault(), setHumeda({...humeda, parOrg:humeda.parMicro === 'open'?'close':'open'})}
+    function openCloseHumParFis(e){e.preventDefault(), setHumeda({...humeda, parFis:humeda.parMicro === 'open'?'close':'open'})}
+    function openCloseHumParIn(e){e.preventDefault(), setHumeda({...humeda, parIn:humeda.parMicro === 'open'?'close':'open'})}
+    function openCloseHumParIno(e){e.preventDefault(), setHumeda({...humeda, parIno:humeda.parMicro === 'open'?'close':'open'})}
     
     function openCloseSecParMicro(e){e.preventDefault(), setHumeda({...humeda, parMicro:humeda.parMicro === 'open'?'close':'open'})}
     function openCloseSecParOrg(e){e.preventDefault(), setHumeda({...humeda, parMicro:humeda.parMicro === 'open'?'close':'open'})}
@@ -47,18 +55,28 @@ export default function Home() {
     function closeVisualizarPdf(e){e.preventDefault(), setPdf(false)}
     function openMap(e){e.preventDefault(); setMap(e.target.id)}
 
+    function openLog(e){
+        e.preventDefault();
+        setLog('open')
+    }
+
+    function closeLog(e){
+        e.preventDefault();
+        setLog('close')
+    }
+    
     return (
         <div className="section">
             <Aside 
-            estado={estado} humeda={humeda}
-            openCloseEm2016T2={openCloseEm2016T2} openCloseEm2017T2={openCloseEm2017T2} openCloseEm2018T1={openCloseEm2018T1} 
-            openCloseEm2018T3={openCloseEm2018T3} map={map} openMap={openMap} openVisualizarPdf={openVisualizarPdf} pdf={pdf} 
-            openCloseHumParFis={openCloseHumParFis} openCloseHumParIn={openCloseHumParIn} openCloseHumParIno={openCloseHumParIno} openCloseHumParMicro={openCloseHumParMicro} openCloseHumParOrg={openCloseHumParOrg}
+                estado={estado} humeda={humeda}
+                openLog={openLog} 
+                openCloseEm2016T2={openCloseEm2016T2} openCloseEm2017T2={openCloseEm2017T2} openCloseEm2018T1={openCloseEm2018T1} 
+                openCloseEm2018T3={openCloseEm2018T3} map={map} openMap={openMap} openVisualizarPdf={openVisualizarPdf} pdf={pdf} 
+                openCloseHumParFis={openCloseHumParFis} openCloseHumParIn={openCloseHumParIn} openCloseHumParIno={openCloseHumParIno} openCloseHumParMicro={openCloseHumParMicro} openCloseHumParOrg={openCloseHumParOrg}
             />
             <Geovisor />
             <Mensaje />
-          
-            <MapContainer center={[-12.114974922615183, -76.142071978681196]} zoom={8} scrollWheelZoom={true}>
+            <MapContainer id="leaflet-container" center={[-11.65, -76.142071978681196]} zoom={11} scrollWheelZoom={true}>
                 <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
                 <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}" ext='png' />
                 <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}" ext='png' />
@@ -84,8 +102,7 @@ export default function Home() {
                 {
                     map === "1"?<TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}" ext='png' />:null
                 }
-        
-                
+                <SearchButton />
                 <AreaInfluenciaAmbientalPoligono />
                 <AreaEfectivaPoligono />
                 <AreaInfluenciaAmbientalPuntos />
@@ -103,10 +120,6 @@ export default function Home() {
                     estado.em2018T3 === 'close'?null:<Em2018T3 />
                 }
                 {
-                    pdf === false?null:<VisualizarPdf closeVisualizarPdf={closeVisualizarPdf} />
-                }
-
-                {
                     humeda.parMicro === 'close'?null:<HumedaParMicro />
                 }
                 {
@@ -122,16 +135,19 @@ export default function Home() {
                     humeda.parIno === 'close'?null:<HumedaParIno />
                 }
             </MapContainer>
+            {
+                pdf === false?null:<VisualizarPdf closeVisualizarPdf={closeVisualizarPdf} />
+            }
+            {
+                log === 'close'?null:<Login closeLog={closeLog} />
+            }
         </div>
     )
 }
 
-
-{/** attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' **/}
-
 function VisualizarPdf(props){
     return(
-        <div className="flex justify-center items-center absolute top-0 h-screen right-14 h-96 w-full opacity" style={{zIndex:"1000"}}>
+        <div className="flex justify-center items-center absolute top-0 h-screen right-14 h-96 w-full opacity" style={{zIndex:"2000"}}>
             <div className="flex-1 max-w-2xl">
                 <div className="w-full bg-white px-3 py-1 rounded-t-md border-b border-gray-300">
                     <svg onClick={props.closeVisualizarPdf} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" className="cursor-pointer bi bi-x-lg" viewBox="0 0 16 16">
@@ -148,19 +164,19 @@ function VisualizarPdf(props){
 
 function Login(props){
     return(
-        <div className="flex justify-center items-center absolute top-0 h-screen w-full opacity" style={{zIndex:"1000"}}>
-            <div className="flex-1 max-w-md bg-white p-5 rounded-md">
-                <h1 className="text-black text-center text-xl">Iniciar sesión</h1>
-                <div className="mt-5">
-                    <label className="text-black">Correo electrónico</label>
-                    <input type="text" placeholder="ingrese su correo" className="border border-gray-300 py-1 px-3 w-full rounded-sm mt-2" />
+        <div className="flex justify-center items-center absolute top-0 h-screen w-full opacity" style={{zIndex:"2000"}}>
+            <div className="flex-1 max-w-md bg-white p-5">
+                <div className='flex items-center justify-between'>
+                    <h1>Geovisor</h1>
+                    <Image width={67.5} height={50}  src='/Chinalco.png' alt={'Chinalco'} />
                 </div>
-                <div className="mt-3">
-                    <label className="text-black">Contraseña</label>
-                    <input type="text" placeholder="ingrese su correo" className="border border-gray-300 py-1 px-3 w-full rounded-sm mt-2" />
+                <div className='border border-gray-200 p-5 mt-10 bg-white'>
+                    <h1 className='text-black text-center'>¿Seguro que desea cerrar la sesión?</h1>
+                    <Link href={"/"} >
+                        <button className="mt-10 py-2 px-3 w-full back-color text-white">Cerrar sesión</button>
+                    </Link>
+                    <button onClick={props.closeLog} className="mt-3 py-2 px-3 w-full" style={{backgroundColor:'rgb(243, 244, 241)'}}>Cancelar</button>
                 </div>
-                <button className="mt-5 py-2 px-3 w-full rounded-sm" style={{backgroundColor:'rgb(69, 128, 94)'}}>Iniciar sesión</button>
-                <button className="mt-2 py-2 px-3 w-full bg-gray-200 text-black rounded-sm">Cancelar</button>
             </div>
         </div>
     );
