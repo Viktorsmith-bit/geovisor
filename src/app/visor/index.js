@@ -6,7 +6,6 @@ import {MapContainer, TileLayer} from "react-leaflet";
 import { ImageMapLayer, FeatureLayer } from "react-esri-leaflet";
 import EsriLeafletGeoSearch from "react-esri-leaflet/plugins/EsriLeafletGeoSearch";
 import SearchButton from '../../components/visor/components/search';
-import Control from '../../components/visor/components/control';
 import Aside from "../../components/visor/aside/asideRight";
 
 import Geovisor from "@/components/visor/components/geovisor";
