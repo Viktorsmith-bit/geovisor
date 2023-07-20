@@ -14,7 +14,7 @@
   border-right: solid 1px rgb(185,192,198);
 }
 .text-color{
-  color: rgb(32, 33, 36)
+  color: rgb(40, 40, 40)
 }
 .text-blue{
   color:rgb(0, 96, 150);
@@ -25,13 +25,10 @@
 .back-color{
   background-color: rgb(0, 96, 150);
 }
-.background-oscuro{
-  background-color: rgb(24,30,37);
-}
-.background-claro{
-  background-color: rgb(30,39,49);
+.background-color{
+  background-color: rgb(40, 40, 40);
 }
 .opacity {
-  background: rgba(30,39,49, 0.8);
+  background: rgba(40,40,40, 0.8);
 }
 

@@ -2,10 +2,11 @@
 import { useState } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
-import {MapContainer, TileLayer} from "react-leaflet";
+import {MapContainer, TileLayer, useMapEvent, useMap} from "react-leaflet";
 import { ImageMapLayer, FeatureLayer } from "react-esri-leaflet";
 import EsriLeafletGeoSearch from "react-esri-leaflet/plugins/EsriLeafletGeoSearch";
 import SearchButton from '../../components/visor/components/search';
+import HomeButton from '../../components/visor/components/home';
 import Aside from "../../components/visor/aside/asideRight";
 
 import Geovisor from "@/components/visor/components/geovisor";
@@ -63,7 +64,7 @@ export default function Home() {
         e.preventDefault();
         setLog('close')
     }
-    
+
     return (
         <div className="section">
             <Aside 
@@ -75,6 +76,7 @@ export default function Home() {
             />
             <Geovisor />
             <Mensaje />
+            
             <MapContainer id="leaflet-container" center={[-11.65, -76.142071978681196]} zoom={11} scrollWheelZoom={true}>
                 <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
                 <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}" ext='png' />
@@ -101,7 +103,9 @@ export default function Home() {
                 {
                     map === "1"?<TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}" ext='png' />:null
                 }
+                
                 <SearchButton />
+                <HomeButton />
                 <AreaInfluenciaAmbientalPoligono />
                 <AreaEfectivaPoligono />
                 <AreaInfluenciaAmbientalPuntos />
