@@ -78,29 +78,29 @@ export default function Home() {
             
             <MapContainer id="leaflet-container" center={[-11.65, -76.142071978681196]} zoom={11} scrollWheelZoom={true}>
                 <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
-                <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}" ext='png' />
-                <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}" ext='png' />
+                <TileLayer attribution='Developed by Wlash Perú' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}" ext='png' />
+                <TileLayer attribution='Developed by Wlash Perú' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}" ext='png' />
                 {
                     map === "1"?<TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />:null
                 }
                 {
-                    map === "2"?<TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png" />:null
+                    map === "2"?<TileLayer attribution='Developed by Wlash Perú' url="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png" />:null
                 }
                 {
-                    map === "3"?<TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />:null
+                    map === "3"?<TileLayer attribution='Developed by Wlash Perú' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />:null
                 }
                 {
-                    map === "4"?<TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png" />:null
+                    map === "4"?<TileLayer attribution='Developed by Wlash Perú' url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png" />:null
                 }
                 {
-                    map === "5"?<TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://tile.osm.ch/switzerland/{z}/{x}/{y}.png" />:null
+                    map === "5"?<TileLayer attribution='Developed by Wlash Perú' url="https://tile.osm.ch/switzerland/{z}/{x}/{y}.png" />:null
                 }
 
                 {
-                    map === "1"?<TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}" ext='png' />:null
+                    map === "1"?<TileLayer attribution='Developed by Wlash Perú' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}" ext='png' />:null
                 }
                 {
-                    map === "1"?<TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}" ext='png' />:null
+                    map === "1"?<TileLayer attribution='Developed by Wlash Perú' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}" ext='png' />:null
                 }
 
                 <SearchButton />
