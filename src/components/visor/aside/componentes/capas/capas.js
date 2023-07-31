@@ -17,45 +17,57 @@ export default function Capas(props){
                     </div>
                 </div>
             </div>
+            <div className="flex items-center px-4 h-10 back-color ">
+                <div className="flex w-full h-6 ">
+                    <div className="flex items-center justify-center bg-gray-200 h-6 w-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                    </div>
+                    <input className="input w-full h-6 " />
+                </div>
+            </div>
             <div className="px-4">
                 <h1 className="flex items-center text-sm text-color border-b border-gray-500 w-full h-10">Estaciones de monitoreo</h1>
             </div>
-            <div className="px-4">
-                <div className="mt-2" onClick={(e)=>{ e.preventDefault(), setState({...state, caliAgua:state.caliAgua === 'open'?'close':'open'})}} >
+            <div className="">
+                <div className="mt-2 px-4" onClick={(e)=>{ e.preventDefault(), setState({...state, caliAgua:state.caliAgua === 'open'?'close':'open'})}} >
                     <div className={`flex items-center gap-1 h-7`}>
                         {state.caliAgua === 'close'?<Close />:<Open />}
                         <h1 className="text-sm text-color cursor-pointer">Calidad del agua y efluentes</h1>
                     </div>
                 </div>
                 {state.caliAgua === 'close'?null:<CalidadAgua humeda={props.humeda} openCloseHumParFis={props.openCloseHumParFis} openCloseHumParIn={props.openCloseHumParIn} openCloseHumParIno={props.openCloseHumParIno} openCloseHumParMicro={props.openCloseHumParMicro} openCloseHumParOrg={props.openCloseHumParOrg} estado={props.estado} openCloseEm2016T2={props.openCloseEm2016T2} openCloseEm2017T2={props.openCloseEm2017T2} openCloseEm2018T1={props.openCloseEm2018T1} openCloseEm2018T3={props.openCloseEm2018T3} />}
-                <div className="section" onClick={(e)=>{ e.preventDefault(), setState({...state, caliAire:state.caliAire === 'open'?'close':'open'})}}>
+                <div className="px-4" onClick={(e)=>{ e.preventDefault(), setState({...state, caliAire:state.caliAire === 'open'?'close':'open'})}}>
                     <div className={`flex items-center gap-1 h-7`}>
                         {state.caliAire === 'close'?<Close />:<Open />}
                         <h1 className="text-sm text-color cursor-pointer">Calidad del aire</h1>
                     </div>
                 </div>
-                <div className="section" onClick={(e)=>{ e.preventDefault(), setState({...state, caliSuelo:state.caliSuelo=== 'open'?'close':'open'})}}>
+                <div className="px-4" onClick={(e)=>{ e.preventDefault(), setState({...state, caliSuelo:state.caliSuelo=== 'open'?'close':'open'})}}>
                     <div className="flex items-center gap-1 h-7">
                         {state.caliSuelo === 'close'?<Close />:<Open />}
                         <h1 className="text-sm text-color cursor-pointer">Calidad del suelo</h1>
                     </div>
                 </div>
-                <div className="section" onClick={(e)=>{e.preventDefault(), setState({...state, bio:state.bio === 'open'?'close':'open'})}}>
+                <div className="px-4" onClick={(e)=>{e.preventDefault(), setState({...state, bio:state.bio === 'open'?'close':'open'})}}>
                     <div className="flex items-center gap-1 h-7">
                         {state.bio === 'close'?<Close />:<Open />}
                         <h1 className="text-sm text-color cursor-pointer">Biológico terrestre</h1>
                     </div>
                 </div>
-                <div className="section" onClick={(e)=>{e.preventDefault(), setState({...state, hidro:state.hidro === 'open'?'close':'open'})}}>
+                <div className="px-4" onClick={(e)=>{e.preventDefault(), setState({...state, hidro:state.hidro === 'open'?'close':'open'})}}>
                     <div className="flex items-center gap-1 h-7">
                         {state.hidro === 'close'?<Close />:<Open />}
                         <h1 className="text-sm text-color cursor-pointer">Hidrobiología</h1>
                     </div>
                 </div>
+
             </div>
         </div>
     );
 }
+
 
 function Open(){
     return(
@@ -75,4 +87,3 @@ function Close(){
         </svg>
     );
 }
-

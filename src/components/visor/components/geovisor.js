@@ -8,8 +8,8 @@ export default function Geovisor(){
             </div>
             <div className='flex items-center px-2 back-color'>
                 <div className="section">
-                    <h1 className='text-xs text-white'>MINERA TOROMOCHO</h1>
-                    <h1 className='font-bold text-white'>GEOVISOR PARA LA GESTIÓN MINERA</h1>
+                    <h1 className='text-xs text-white'>Unidad Minera Toromocho</h1>
+                    <h1 className='font-bold text-white'>Geovisor para la Gestión Minera</h1>
                 </div>
             </div>
         </div>

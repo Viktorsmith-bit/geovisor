@@ -69,15 +69,15 @@ export default function Aside(props){
                         <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
                     </svg>
                 </div>
+                <div onClick={abrirMap} className={`flex justify-center items-center h-10 w-14 cursor-pointer ${map === 'closeMap'?'hover:bg-gray-200':'bg-gray-200'}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="rgb(40,40,40)" className="bi bi-map-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.502.502 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5V.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.498.498 0 0 0-.196 0L5 14.09zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1-.5-.1z"/>
+                    </svg>
+                </div>
                 <div onClick={abrirPdf} className={`flex justify-center items-center h-10 w-14 cursor-pointer ${pdf === 'closePdf'?'hover:bg-gray-200':'bg-gray-200'}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="rgb(40,40,40)" className="bi bi-file-earmark-text" viewBox="0 0 16 16">
                         <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
                         <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
-                    </svg>
-                </div>
-                <div onClick={abrirMap} className={`flex justify-center items-center h-10 w-14 cursor-pointer ${map === 'closeMap'?'hover:bg-gray-200':'bg-gray-200'}`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="rgb(40,40,40)" className="bi bi-map-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.502.502 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5V.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.498.498 0 0 0-.196 0L5 14.09zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1-.5-.1z"/>
                     </svg>
                 </div>
             </div>

@@ -75,7 +75,6 @@ export default function Home() {
                 openCloseHumParFis={openCloseHumParFis} openCloseHumParIn={openCloseHumParIn} openCloseHumParIno={openCloseHumParIno} openCloseHumParMicro={openCloseHumParMicro} openCloseHumParOrg={openCloseHumParOrg}
             />
             <Geovisor />
-            <Mensaje />
             
             <MapContainer id="leaflet-container" center={[-11.65, -76.142071978681196]} zoom={11} scrollWheelZoom={true}>
                 <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
@@ -103,7 +102,7 @@ export default function Home() {
                 {
                     map === "1"?<TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}" ext='png' />:null
                 }
-                
+
                 <SearchButton />
                 <HomeButton />
                 <AreaInfluenciaAmbientalPoligono />
