@@ -26,14 +26,6 @@ function Em2017T2(){
         PromiseDB();
     }, [])
 
-    const [data, setData] = useState();
-    useEffect(()=>{
-        function getStatic(){
-            return setData(state)
-        }
-        getStatic();
-    })
-
     const blackOptionsStyle= {color:"yellow"}
     
     const Popup = ({ feature }) => {
@@ -146,7 +138,7 @@ function Em2017T2(){
     return(
         <Fragment>
             {
-                data === undefined?<Loading />:<GeoJSON data={data} onEachFeature={onEachFeature} pointToLayer={pointToLayer}/>
+                state === undefined?<Loading />:<GeoJSON data={state} onEachFeature={onEachFeature} pointToLayer={pointToLayer}/>
             }
         </Fragment>
     );

@@ -10,6 +10,14 @@
   left: 0;
   right: 0
 }
+
+.image {
+  background-image: url("../../public/fondos/minera.jpg");
+  background-position: 100% 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .border{
   border-right: solid 1px rgb(185,192,198);
 }
@@ -31,7 +39,184 @@
 .opacity {
   background: rgba(40,40,40, 0.8);
 }
-
+.bg-red{
+  background-color: #E74C3C;
+}
 .input{
   outline: none;
+}
+
+
+.height {
+  height: auto;
+}
+.galeria {
+  height: 16rem;
+  width: 100%;
+}
+.height-image {
+  height: 20rem;
+}
+.width-image {
+  width: 100%;
+}
+.width-perfil {
+  width: 100%;
+}
+.modal-team {
+  width: 100%;
+  height: 27rem;
+}
+.panam {
+  height: 20rem;
+  width: 100%;
+}
+.absolute-capas {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+.absolute-leyenda {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+.absolute-tilelayer {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+.height-visor {
+  height: 26.7rem;
+}
+.width-creditos {
+  width: 100%;
+}
+.height-section {
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .height {
+    height: auto;
+  }
+  .height-image {
+    height: 25rem;
+  }
+  .width-image {
+    width: 100%;
+  }
+  .width-perfil {
+    width: 22.7rem;
+  }
+  .modal-team {
+    width: 27rem;
+    height: 33rem;
+  }
+  .galeria {
+    height: 16rem;
+    width: 20rem;
+  }
+  .panam {
+    height: 25rem;
+    width: 100%;
+  }
+  .height-visor {
+    height: 26.7rem;
+  }
+  .absolute-capas {
+    position: absolute;
+    bottom: 58px;
+    right: 12px;
+  }
+  .absolute-leyenda {
+    position: absolute;
+    bottom: 58px;
+    right: 12px;
+  }
+  .absolute-tilelayer {
+    position: absolute;
+    bottom: 58px;
+    right: 12px;
+  }
+  .height-section {
+    height: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .height {
+    height: 40rem;
+  }
+  .height-image {
+    height: 37rem;
+  }
+  .width-image {
+    width: 51rem;
+  }
+  .width-perfil {
+    width: 26rem;
+  }
+  .modal-team {
+    width: 35rem;
+    height: 35rem;
+  }
+  .modal-datos {
+    width: 29rem;
+    height: 35rem;
+  }
+  .galeria {
+    height: 16rem;
+    width: 19.4rem;
+  }
+  .height-proyecto {
+    height: 37rem;
+  }
+  .height-opcion {
+    height: 33rem;
+  }
+  .panam {
+    height: 37rem;
+    width: 51rem;
+  }
+  .absolute-capas {
+    position: absolute;
+    top: 12px;
+    right: 62px;
+  }
+  .absolute-leyenda {
+    position: absolute;
+    top: 56px;
+    right: 62px;
+  }
+  .absolute-tilelayer {
+    position: absolute;
+    top: 100px;
+    right: 62px;
+  }
+  .height-visor {
+    height: 26.7rem;
+  }
+  .width-creditos {
+    width: 27.5rem;
+  }
+  .height-section {
+    height: 40rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .height {
+    height: 50rem;
+  }
+  .panam {
+    height: 44rem;
+    width: 60rem;
+  }
+  .height-image {
+    height: 44rem;
+  }
+  .width-image {
+    width: 60rem;
+  }
 }

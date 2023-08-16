@@ -8,9 +8,11 @@ import EsriLeafletGeoSearch from "react-esri-leaflet/plugins/EsriLeafletGeoSearc
 import SearchButton from '../../components/visor/components/search';
 import HomeButton from '../../components/visor/components/home';
 import Aside from "../../components/visor/aside/asideRight";
-
+import Panoramicas from '../../components/visor/components/panoramicas/panoramicas';
+import Coordenadas360 from '../../components/visor/components/panoramicas/coordenadas';
 import Geovisor from "@/components/visor/components/geovisor";
 import Mensaje from "@/components/visor/components/mensaje";
+
 import Departamentos from "../../components/visor/database/departamentos"
 import AreaEfectivaPoligono from "../../components/visor/database/area_efectiva/area_efectiva_poligono"
 import AreaInfluenciaAmbientalPoligono from "../../components/visor/database/area_influencia/area_influencia_poligono";
@@ -28,17 +30,22 @@ import HumedaParIno from '../../components/visor/database/agua_superficial/temp_
 
 export default function Home() {
     const [map, setMap] = useState(1)
+    const [vic, setVic] = useState('close')
+    const [state, setState] = useState()
+    const [panam, setPanam] = useState('close')
     const [log, setLog] = useState('close')
     const [pdf, setPdf] = useState(false)
     const [estado, setEstado] = useState({em2016T2:'close', em2017T2:'close', em2018T1:'close', em2018T3:'close'})
     const [humeda, setHumeda] = useState({parMicro:'close', parOrg:'close', parFis:'close', parIn:'close', parIno:'close'})
     const [seca, setSeca] = useState({parMicro:'close', parOrg:'close', parFis:'close', parIn:'close', parIno:'close'})
 
+    function openCloseVic(e){e.preventDefault(), setVic('open')}
+
     function openCloseHumParMicro(e){e.preventDefault(), setHumeda({...humeda, parMicro:humeda.parMicro === 'open'?'close':'open'})}
-    function openCloseHumParOrg(e){e.preventDefault(), setHumeda({...humeda, parOrg:humeda.parMicro === 'open'?'close':'open'})}
-    function openCloseHumParFis(e){e.preventDefault(), setHumeda({...humeda, parFis:humeda.parMicro === 'open'?'close':'open'})}
-    function openCloseHumParIn(e){e.preventDefault(), setHumeda({...humeda, parIn:humeda.parMicro === 'open'?'close':'open'})}
-    function openCloseHumParIno(e){e.preventDefault(), setHumeda({...humeda, parIno:humeda.parMicro === 'open'?'close':'open'})}
+    function openCloseHumParOrg(e){e.preventDefault(), setHumeda({...humeda, parOrg:humeda.parOrg === 'open'?'close':'open'})}
+    function openCloseHumParFis(e){e.preventDefault(), setHumeda({...humeda, parFis:humeda.parFis=== 'open'?'close':'open'})}
+    function openCloseHumParIn(e){e.preventDefault(), setHumeda({...humeda, parIn:humeda.parIn=== 'open'?'close':'open'})}
+    function openCloseHumParIno(e){e.preventDefault(), setHumeda({...humeda, parIno:humeda.parIno === 'open'?'close':'open'})}
     
     function openCloseSecParMicro(e){e.preventDefault(), setHumeda({...humeda, parMicro:humeda.parMicro === 'open'?'close':'open'})}
     function openCloseSecParOrg(e){e.preventDefault(), setHumeda({...humeda, parMicro:humeda.parMicro === 'open'?'close':'open'})}
@@ -55,6 +62,10 @@ export default function Home() {
     function closeVisualizarPdf(e){e.preventDefault(), setPdf(false)}
     function openMap(e){e.preventDefault(); setMap(e.target.id)}
 
+    function hundleClicClose360(e){e.preventDefault(), setVic(true)}
+    function hundleClicClosePanam(e){e.preventDefault(), setPanam(panam === 'open'?'close':'open')}
+    function hundleClicOpen360(e){e.preventDefault(), setState(e.target.id), setVic(false)}
+
     function openLog(e){
         e.preventDefault();
         setLog('open')
@@ -69,13 +80,13 @@ export default function Home() {
         <div className="section">
             <Aside 
                 estado={estado} humeda={humeda}
-                openLog={openLog} 
+                openLog={openLog} state={state} hundleClicClosePanam={hundleClicClosePanam}
                 openCloseEm2016T2={openCloseEm2016T2} openCloseEm2017T2={openCloseEm2017T2} openCloseEm2018T1={openCloseEm2018T1} 
                 openCloseEm2018T3={openCloseEm2018T3} map={map} openMap={openMap} openVisualizarPdf={openVisualizarPdf} pdf={pdf} 
                 openCloseHumParFis={openCloseHumParFis} openCloseHumParIn={openCloseHumParIn} openCloseHumParIno={openCloseHumParIno} openCloseHumParMicro={openCloseHumParMicro} openCloseHumParOrg={openCloseHumParOrg}
             />
             <Geovisor />
-            
+            {vic?null:<Panoramicas hundleClicClose360={hundleClicClose360} state={state}/>}
             <MapContainer id="leaflet-container" center={[-11.65, -76.142071978681196]} zoom={11} scrollWheelZoom={true}>
                 <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
                 <TileLayer attribution='Developed by Wlash Perú' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}" ext='png' />
@@ -103,15 +114,14 @@ export default function Home() {
                     map === "1"?<TileLayer attribution='Developed by Wlash Perú' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}" ext='png' />:null
                 }
 
+                {panam === "close"?null:<Coordenadas360 hundleClicOpen360={hundleClicOpen360}/>}
                 <SearchButton />
                 <HomeButton />
                 <AreaInfluenciaAmbientalPoligono />
                 <AreaEfectivaPoligono />
                 <AreaInfluenciaAmbientalPuntos />
                 <AreaEfectivaPuntos />
-                {
-                    estado.em2016T2 === 'close'?null:<Em2016T2 />
-                }
+                {estado.em2016T2 === 'close'?null:<Em2016T2 openCloseVic={openCloseVic} />}
                 {
                     estado.em2017T2 === 'close'?null:<Em2017T2 />
                 }

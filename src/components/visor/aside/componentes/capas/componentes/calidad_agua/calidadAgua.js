@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 
 export default function CalidadAgua(props){
+
     const [state1, setState1] = useState({aguaSub:'close',aguaSup:'close',puntVert:'close', ano2016:'close',ano2017:'close',ano2018:'close',eca:'close'})
     const [state2, setState2] = useState({ano2016:'close',ano2017:'close',ano2018:'close',eca:'close'})
     const [state3, setState3] = useState({tempH:'close',tempS:'close'})
@@ -25,15 +26,52 @@ export default function CalidadAgua(props){
 
     return(
         <LayerGroup>
-            <Layer nombre={'Agua subterránea'} estado={state1.aguaSub} evento={openCloseAguaSub}>
+            <Layer id="" nombre={'Agua subterránea'} estado={state1.aguaSub} evento={openCloseAguaSub}>
                 <Layer nombre={'2016'} estado={state2.ano2016} evento={openCloseAno2016}>
                     <Input nombre={'EM TA-12-Temporada 2'} estado={props.estado.em2016T2} evento={props.openCloseEm2016T2} /> 
                 </Layer>
                 <Layer nombre={'2017'} estado={state2.ano2017} evento={openCloseAno2017}>
                     <Input nombre={'EM TA-12-Temporada 2'} estado={props.estado.em2017T2} evento={props.openCloseEm2017T2} /> 
                 </Layer>
+                <Layer nombre={'2018'} estado={state2.ano2018} evento={openCloseAno2018}>
+                    <Input nombre={'EM TA-12-Temporada 2'} estado={props.estado.em2018T1} evento={props.openCloseEm2018T1} /> 
+                </Layer>
             </Layer>
-            <Layer nombre={'Agua superficial'} estado={state1.aguaSup} evento={openCloseAguaSup}>
+            <Layer id="" nombre={'Agua superficial'} estado={state1.aguaSup} evento={openCloseAguaSup}>
+                <Layer nombre={'Temporada húmeda'} estado={state3.tempH} evento={openCloseTempH}>
+                    <Layer nombre={'Parámetros microbiológicos'} estado={sup1.parMic} evento={openCloseParMic}>
+                        <Input nombre={'EM R-2'} estado={props.humeda.parMicro} evento={props.openCloseHumParMicro} />
+                    </Layer>
+                    <Layer nombre={'Parámetros orgánicos'} estado={sup1.parOrg} evento={openCloseParOrg}>
+                        <Input nombre={'EM R-2'} estado={props.humeda.parOrg} evento={props.openCloseHumParOrg} />
+                    </Layer>
+                    <Layer nombre={'Parámetros fisicoquímicos'} estado={sup1.parFis} evento={openCloseParFis} >
+                        <Input nombre={'EM R-2'} estado={props.humeda.parFis} evento={props.openCloseHumParFis} />
+                    </Layer>
+                    <Layer nombre={'Parámetros in situ'} estado={sup1.parIn} evento={openCloseParIn} >
+                        <Input nombre={'EM R-2'} estado={props.humeda.parIn} evento={props.openCloseHumParIn} />
+                    </Layer>
+                    <Layer nombre={'Parámetros inorgánicos'} estado={sup1.parIno} evento={openCloseParIno} >
+                        <Input nombre={'EM R-2'} estado={props.humeda.parIno} evento={props.openCloseHumParIno} />
+                    </Layer>
+                </Layer>
+                <Layer nombre={'Temporada seca'} estado={state3.tempS} evento={openCloseTempS}>
+                    <Layer nombre={'Parámetros microbiológicos'} estado={sup1.parMic} evento={openCloseParMic}>
+                        <Input nombre={'EM R-2'} estado={props.humeda.parMicro} evento={props.openCloseHumParMicro} />
+                    </Layer>
+                    <Layer nombre={'Parámetros orgánicos'} estado={sup1.parOrg} evento={openCloseParOrg}>
+                        <Input nombre={'EM R-2'} estado={props.humeda.parOrg} evento={props.openCloseHumParOrg} />
+                    </Layer>
+                    <Layer nombre={'Parámetros fisicoquímicos'} estado={sup1.parFis} evento={openCloseParFis} >
+                        <Input nombre={'EM R-2'} estado={props.humeda.parFis} evento={props.openCloseHumParFis} />
+                    </Layer>
+                    <Layer nombre={'Parámetros in situ'} estado={sup1.parIn} evento={openCloseParIn} >
+                        <Input nombre={'EM R-2'} estado={props.humeda.parIn} evento={props.openCloseHumParIn} />
+                    </Layer>
+                    <Layer nombre={'Parámetros inorgánicos'} estado={sup1.parIno} evento={openCloseParIno} >
+                        <Input nombre={'EM R-2'} estado={props.humeda.parIno} evento={props.openCloseHumParIno} />
+                    </Layer>
+                </Layer>
             </Layer>
         </LayerGroup>
     );
@@ -53,7 +91,7 @@ function Layer({estado, evento, nombre, children}){
             <div className="flex items-center">
                 <div className="w-4 border-dashed border-b border-gray-500"></div>
                 <div className="flex items-center gap-1 h-7">
-                    <OpenCloseComponent estado={estado} />
+                    <OpenCloseComponent evento={evento} estado={estado} />
                     <h1 onClick={evento} className="text-sm text-color cursor-pointer">{nombre}</h1>
                 </div>
             </div>
@@ -68,10 +106,10 @@ function OpenCloseComponent(props){
     return(
         <Fragment>
             {
-                props.estado === 'close'?<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="bi bi-plus-square" viewBox="0 0 16 16">
+                props.estado === 'close'?<svg onClick={props.evento} xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="cursor-pointer bi bi-plus-square" viewBox="0 0 16 16">
                     <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                </svg>:<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="bi bi-dash-square" viewBox="0 0 16 16">
+                </svg>:<svg onClick={props.evento} xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="cursor-pointer bi bi-dash-square" viewBox="0 0 16 16">
                     <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                     <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
                 </svg>

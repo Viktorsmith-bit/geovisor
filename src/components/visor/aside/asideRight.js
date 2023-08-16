@@ -58,6 +58,7 @@ export default function Aside(props){
     return(
         <div className="flex flex-col justify-between absolute top-0 right-0 bg-white z-40 h-screen w-14" style={{zIndex:"1000"}} >
             <div className="section">
+                <OpenClose aside={aside} />
                 <div onClick={abrirCapas} className={`flex justify-center items-center h-10 w-14 cursor-pointer ${capas === 'closeCap'?'hover:bg-gray-200':'bg-gray-200'}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(40,40,40)" className="bi bi-stack" viewBox="0 0 16 16">
                         <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.598.598 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.598.598 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.598.598 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535L7.733.063z"/>
@@ -82,15 +83,15 @@ export default function Aside(props){
                 </div>
             </div>
             <div onClick={props.openLog} className={`flex justify-center items-center h-10 w-14 cursor-pointer mb-4 hover:bg-gray-200`}>
-                <div className="flex items-center justify-center rounded-full h-10 w-10 bg-gray-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(40,40,40)" className="bi bi-person-circle" viewBox="0 0 16 16">
+                <div className="flex items-center justify-center rounded-full h-10 w-10 background-color">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" className="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                     </svg>
                 </div>
             </div>
             {
-                capas === "closeCap"?null:<Capas humeda={props.humeda} openCloseHumParFis={props.openCloseHumParFis} openCloseHumParIn={props.openCloseHumParIn} openCloseHumParIno={props.openCloseHumParIno} openCloseHumParMicro={props.openCloseHumParMicro} openCloseHumParOrg={props.openCloseHumParOrg} estado={props.estado} openCloseEm2016T2={props.openCloseEm2016T2} openCloseEm2017T2={props.openCloseEm2017T2} openCloseEm2018T1={props.openCloseEm2018T1} openCloseEm2018T3={props.openCloseEm2018T3} />
+                capas === "closeCap"?null:<Capas panam={props.panam} hundleClicClosePanam={props.hundleClicClosePanam} state={props.state} vic={props.vic} humeda={props.humeda} openCloseHumParFis={props.openCloseHumParFis} openCloseHumParIn={props.openCloseHumParIn} openCloseHumParIno={props.openCloseHumParIno} openCloseHumParMicro={props.openCloseHumParMicro} openCloseHumParOrg={props.openCloseHumParOrg} estado={props.estado} openCloseEm2016T2={props.openCloseEm2016T2} openCloseEm2017T2={props.openCloseEm2017T2} openCloseEm2018T1={props.openCloseEm2018T1} openCloseEm2018T3={props.openCloseEm2018T3} />
             }
             {
                 leyen === "closeLey"?null:<Leyenda />
@@ -100,6 +101,20 @@ export default function Aside(props){
             }
             {
                 pdf === "closePdf"?null:<Pdf openVisualizarPdf={props.openVisualizarPdf} pdf={props.pdf} />
+            }
+        </div>
+    );
+}
+
+function OpenClose({aside}){
+    return(
+        <div className="flex justify-center items-center h-10 w-14 cursor-pointer background-color">
+            {
+                aside === 'close'? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>:<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
             }
         </div>
     );

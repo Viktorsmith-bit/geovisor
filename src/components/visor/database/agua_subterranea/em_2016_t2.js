@@ -4,12 +4,12 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Resp
 import {Icon, icon} from "leaflet";
 import ReactDOMServer from 'react-dom/server';
 import {app} from '../../../../../firebase';
-import {ref, onValue} from "firebase/database";
+import {ref, onValue, set} from "firebase/database";
 import Loading from '../../loading/loading';
 
 function Em2016T2(){
     const [state, setState] = useState();
-    const [vis, setVis] = useState('close')
+    const [data, setData] = useState();
 
     useEffect(()=>{
         async function PromiseDB(){
@@ -22,6 +22,7 @@ function Em2016T2(){
             })
             .then((result)=>{
                 setState(result)
+            
             }).catch(()=>{
                 console.log("Error al cargar los datos")
             })
@@ -29,37 +30,15 @@ function Em2016T2(){
         PromiseDB();
     }, [])
 
-    const [data, setData] = useState();
-    useEffect(()=>{
-        function getStatic(){
-            return setData(state) 
-        }
-        getStatic();
-    })
-
-    let datos = [];
-
-    const Popup = ({ feature }) => {
+    function Popup({ feature }){
         let popupContent;
         if (feature.properties && feature.properties.popupContent) {
-          popupContent = feature.properties.popupContent;
+            popupContent = feature.properties.popupContent;
         }
-        let datos1 = [
-            {name: 'A', ECAs: 4000, Monitoreo: 2400},
-            {name: 'B', ECAs: 3000, Monitoreo: 1398},
-            {name: 'C', ECAs: 2000, Monitoreo: 9800},
-            {name: 'D', ECAs: 2780, Monitoreo: 3908},
-            {name: 'E', ECAs: 1890, Monitoreo: 4800},
-            {name: 'F', ECAs: 2390, Monitoreo: 3800},
-            {name: 'G', ECAs: 3490, Monitoreo: 4300},
-        ];
-
-        datos.push.apply(datos, datos1);
 
         return (
-            <div>
+            <div className='section'>
                 <div className='overFlow-hidden h-96'>
-                    
                     <div className='overflow-auto overscroll-auto h-96'>
                         <table>
                             <thead>
@@ -71,13 +50,13 @@ function Em2016T2(){
                                 <tr>
                                     <td className='border border-gray-300 p-1'>Caudal</td><td className='border border-gray-300 p-1'>{feature.properties.Caudal}</td><td className='border border-gray-300 p-1'>{feature.properties.Uni_Cau}</td><td className='border border-gray-300 p-1'>{feature.properties.ECA_Caudal}</td>
                                 </tr>
-                                <tr>
+                                <tr className={`${feature.properties.Conductivi >= 2500?'bg-red text-white':null}`}>
                                     <td className='border border-gray-300 p-1'>Conductividad</td><td className='border border-gray-300 p-1'>{feature.properties.Conductivi}</td><td className='border border-gray-300 p-1'>{feature.properties.Uni_Con}</td><td className='border border-gray-300 p-1'>{feature.properties.ECA_Conduc}</td>
                                 </tr>
-                                <tr>
+                                <tr className={`${feature.properties.Conductivi >= 4?'bg-red text-white':null}`}>
                                     <td className='border border-gray-300 p-1'>Oxígeno Disuelto</td><td className='border border-gray-300 p-1'>{feature.properties.OD}</td><td className='border border-gray-300 p-1'>{feature.properties.Uni_OD}</td><td className='border border-gray-300 p-1'>{feature.properties.ECA_OD}</td>
                                 </tr>
-                                <tr>
+                                <tr className={`${feature.properties.Conductivi >= 6.5 & feature.properties.Conductivi <= 8.5?null:'bg-red text-white'}`}>
                                     <td className='border border-gray-300 p-1'>PH Campo</td><td className='border border-gray-300 p-1'>{feature.properties.pH_Campo}</td><td className='border border-gray-300 p-1'>{feature.properties.Uni_Ph}</td><td className='border border-gray-300 p-1'>{feature.properties.ECA_pH}</td>
                                 </tr>
                                 <tr>
@@ -141,25 +120,31 @@ function Em2016T2(){
                         </table>
                     </div>
                 </div>
-                <h1 onClick={VisualizarGrafica} className='flex items-center justify-center h-6 w-24 text-white mt-3 back-color cursor-pointer'>Ver gráfica</h1>
             </div>
         );
     };
-    
+
+    let date = [];
+
     const onEachFeature = (feature, layer) => {
         const popupContent = ReactDOMServer.renderToString(
             <Popup feature={feature} />
         );
         layer.bindPopup(popupContent);
+        
+        let datos = [
+            {name:'A', Monitoreo:400, ECAs: 300}
+        ]
+
+        date.push.apply(date, datos)
+        
     };
-    
-    function VisualizarGrafica(e){
-        e.preventDefault()
-        setVis('open')
-    }
-    
+
+    console.log(date)
+    console.log(data)
+
     const icono = new Icon({
-        iconUrl:"alfiler.png",
+        iconUrl:"marcador.png",
         iconSize:[35,35]
     })
 
@@ -167,30 +152,54 @@ function Em2016T2(){
         return L.marker(latlng, {icon:icono})
     }
 
+    function captarCambios(e){
+        e.preventDefault();
+        setEstado(e.target.value)
+    }
+
     return(
         <Fragment>
             {
-                data === undefined?<Loading />:<GeoJSON data={data} onEachFeature={onEachFeature} pointToLayer={pointToLayer}/>
-            }
-         
-                <div className="absolute bottom-9 left-3 " style={{zIndex:"2000"}}>
-                    <div className="bg-white text-sm rounded-sm" >
-                        <h1 className="text-end px-4  py-2">X</h1>
-                        <ResponsiveContainer width={400} height={300} >  
-                            <BarChart width={400} height={300} data={datos}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <Bar dataKey="Monitoreo" fill="rgb(0, 96, 150)" />
-                                <Bar dataKey="ECAs" fill="#E74C3C" />
-                                <XAxis dataKey="name" />
-                                <YAxis width={50} />
-                                <Legend verticalAlign="top" height={50}/>
-                            </BarChart>
-                        </ResponsiveContainer>
+                state === undefined?<Loading />:<GeoJSON data={state} onEachFeature={onEachFeature} pointToLayer={pointToLayer} >
+                    <div className="absolute bottom-9 left-3 " style={{zIndex:"2000"}}>
+                        <div className="bg-white text-sm rounded-sm" >
+                            <div className='flex justify-end px-4 py-2'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="cursor-pointer bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                </svg>
+                            </div>
+                            <div className='px-4'>
+                                <select name="select" onChange={captarCambios} className='w-full text-sm px-2 h-8 bg-gray-200 border border-gray-300 rounded-md mt-6 cursor-pointer'>
+                                    <option value="caudal" defaultValue>1. Caudal</option>
+                                    <option value="entrada">2. Entrada al teletrabajo</option>
+                                    <option value="horaA">3. Salida al refrigerio</option>
+                                    <option value="retornoA">4. Retorno del refrigerio</option>
+                                    <option value="salida">5. Salida del teletrabajo</option>
+                                </select>
+                            </div>
+                            <ResponsiveContainer width={400} height={300} >  
+                                <BarChart width={400} height={300} data={date}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <Bar dataKey="Monitoreo" fill="rgb(0, 96, 150)" />
+                                    <Bar dataKey="ECAs" fill="#E74C3C" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis width={50} />
+                                    <Legend verticalAlign="top" height={50}/>
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
                     </div>
-                </div>
-     
+                </GeoJSON>
+            }
         </Fragment>
     );
 }
 
 export default React.memo(Em2016T2);
+
+
+{
+    /**
+     * 
+     */
+}

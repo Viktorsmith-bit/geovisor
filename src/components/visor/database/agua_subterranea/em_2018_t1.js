@@ -33,7 +33,7 @@ function Em2018T1(){
         }
         getStatic();
     })
-
+    
     const blackOptionsStyle= {color:"yellow"}
     
     const Popup = ({ feature }) => {
