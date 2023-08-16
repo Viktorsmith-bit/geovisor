@@ -9,7 +9,6 @@ import Loading from '../../loading/loading';
 
 function Em2016T2(){
     const [state, setState] = useState();
-    const [data, setData] = useState();
 
     useEffect(()=>{
         async function PromiseDB(){
@@ -29,6 +28,14 @@ function Em2016T2(){
         } 
         PromiseDB();
     }, [])
+
+    const [data, setData] = useState();
+    useEffect(()=>{
+        function getStatic(){
+            return setData(state)
+        }
+        getStatic();
+    })
 
     function Popup({ feature }){
         let popupContent;
@@ -124,24 +131,14 @@ function Em2016T2(){
         );
     };
 
-    let date = [];
-
     const onEachFeature = (feature, layer) => {
         const popupContent = ReactDOMServer.renderToString(
             <Popup feature={feature} />
         );
         layer.bindPopup(popupContent);
-        
-        let datos = [
-            {name:'A', Monitoreo:400, ECAs: 300}
-        ]
 
-        date.push.apply(date, datos)
         
     };
-
-    console.log(date)
-    console.log(data)
 
     const icono = new Icon({
         iconUrl:"marcador.png",
@@ -160,8 +157,18 @@ function Em2016T2(){
     return(
         <Fragment>
             {
-                state === undefined?<Loading />:<GeoJSON data={state} onEachFeature={onEachFeature} pointToLayer={pointToLayer} >
-                    <div className="absolute bottom-9 left-3 " style={{zIndex:"2000"}}>
+                data === undefined?<Loading />:<GeoJSON data={data} onEachFeature={onEachFeature} pointToLayer={pointToLayer} />
+            }
+        </Fragment>
+    );
+}
+
+export default React.memo(Em2016T2);
+
+
+{
+    /**
+     * <div className="absolute bottom-9 left-3 " style={{zIndex:"2000"}}>
                         <div className="bg-white text-sm rounded-sm" >
                             <div className='flex justify-end px-4 py-2'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="cursor-pointer bi bi-x-lg" viewBox="0 0 16 16">
@@ -189,17 +196,5 @@ function Em2016T2(){
                             </ResponsiveContainer>
                         </div>
                     </div>
-                </GeoJSON>
-            }
-        </Fragment>
-    );
-}
-
-export default React.memo(Em2016T2);
-
-
-{
-    /**
-     * 
      */
 }
