@@ -28,7 +28,7 @@ export default function Panoramicas(props){
                         <div className='flex items-center justify-center'>
                             {listaCoordenadas.map((e) =>{
                                 if(e.id === statePanam){
-                                    return <div className='flex flex-col-reverse lg:flex-row h-screen lg:h-auto'>
+                                    return <div key={e.id} className='flex flex-col-reverse lg:flex-row h-screen lg:h-auto'>
                                         <div className='flex flex-col justify-between w-full lg:w-80 bg-gray-100 px-4 py-4 h-full lg:h-auto'>
                                             <div className='container'>
                                                 <svg onClick={props.hundleClicClose360} xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#434040" className="hidden lg:block cursor-pointer bi bi-x-lg" viewBox="0 0 16 16">
