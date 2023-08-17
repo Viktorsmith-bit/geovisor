@@ -1,6 +1,5 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import {GeoJSON} from "react-leaflet";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import {Icon, icon} from "leaflet";
 import ReactDOMServer from 'react-dom/server';
 import {app} from '../../../../../firebase';
@@ -136,7 +135,6 @@ function Em2016T2(){
             <Popup feature={feature} />
         );
         layer.bindPopup(popupContent);
-
         
     };
 

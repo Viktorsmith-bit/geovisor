@@ -1,5 +1,5 @@
 'use client';
-import { Fragment, useState} from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -60,13 +60,18 @@ export default function Home(props) {
   return (
         <div className='flex'>
             <div className='flex-1 image flex justify-center'>
-                <div className='flex-1 flex flex-col justify-between h-screen max-w-lg py-10'>
+                <div className='flex-1 flex flex-col justify-between items-center lg:items-start h-screen w-full lg:max-w-lg py-10'>
                     <h1 className='text-white'>GEOVISOR PARA LA GESTIÓN MINERA</h1>
-                    <h1 className='text-white font-bold text-4xl'>UNIDAD MINERA TOROMOCHO</h1>
-                    <h1 className='text-white'>MINERA CHINALCO</h1>
+                    <h1 className='text-white font-bold text-4xl lg:text-5xl text-center lg:text-start'>UNIDAD MINERA TOROMOCHO</h1>
+                    <div className='flex flex-col items-center lg:items-start'>
+                        <Link href='/login'>
+                            <button className='py-2 px-3 bg-white lg:hidden'>Continuar</button>
+                        </Link>
+                        <h1 className='text-white mt-5'>MINERA CHINALCO</h1>
+                    </div>
                 </div>
             </div>
-            <div className='flex-1'>
+            <div className='flex-1 hidden lg:block'>
                 <div className='flex items-center justify-center h-screen px-4 lg:px-0' style={{backgroundColor:'rgb(243, 244, 241)'}}>
                     <div className='flex-1 max-w-md p-5 shadow-md bg-white border border-gray-200'>
                         <div className='flex items-center justify-between'>

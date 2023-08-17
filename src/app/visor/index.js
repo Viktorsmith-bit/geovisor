@@ -13,6 +13,8 @@ import Coordenadas360 from '../../components/visor/components/panoramicas/coorde
 import Geovisor from "@/components/visor/components/geovisor";
 import Mensaje from "@/components/visor/components/mensaje";
 
+import Distritos from "@/components/visor/database/distritos";
+import Provincia from "@/components/visor/database/provincia";
 import Departamentos from "../../components/visor/database/departamentos"
 import AreaEfectivaPoligono from "../../components/visor/database/area_efectiva/area_efectiva_poligono"
 import AreaInfluenciaAmbientalPoligono from "../../components/visor/database/area_influencia/area_influencia_poligono";
@@ -35,11 +37,16 @@ export default function Home() {
     const [panam, setPanam] = useState('close')
     const [log, setLog] = useState('close')
     const [pdf, setPdf] = useState(false)
+    const [lim, setLim] = useState({dep:'close', prov:'close', dist:'close'})
     const [estado, setEstado] = useState({em2016T2:'close', em2017T2:'close', em2018T1:'close', em2018T3:'close'})
     const [humeda, setHumeda] = useState({parMicro:'close', parOrg:'close', parFis:'close', parIn:'close', parIno:'close'})
     const [seca, setSeca] = useState({parMicro:'close', parOrg:'close', parFis:'close', parIn:'close', parIno:'close'})
 
     function openCloseVic(e){e.preventDefault(), setVic('open')}
+
+    function openCloseLimDep(e){e.preventDefault(), setLim({...lim, dep:lim.dep === 'open'?'close':'open'})}
+    function openCloseLimProv(e){e.preventDefault(), setLim({...lim, prov:lim.prov === 'open'?'close':'open'})}
+    function openCloseLimDist(e){e.preventDefault(), setLim({...lim, dist:lim.dist === 'open'?'close':'open'})}
 
     function openCloseHumParMicro(e){e.preventDefault(), setHumeda({...humeda, parMicro:humeda.parMicro === 'open'?'close':'open'})}
     function openCloseHumParOrg(e){e.preventDefault(), setHumeda({...humeda, parOrg:humeda.parOrg === 'open'?'close':'open'})}
@@ -79,8 +86,8 @@ export default function Home() {
     return (
         <div className="section">
             <Aside 
-                estado={estado} humeda={humeda}
-                openLog={openLog} state={state} hundleClicClosePanam={hundleClicClosePanam}
+                estado={estado} humeda={humeda} openCloseLimDep={openCloseLimDep} lim={lim} panam={panam}
+                openLog={openLog} state={state} hundleClicClosePanam={hundleClicClosePanam} openCloseLimProv={openCloseLimProv} openCloseLimDist={openCloseLimDist}
                 openCloseEm2016T2={openCloseEm2016T2} openCloseEm2017T2={openCloseEm2017T2} openCloseEm2018T1={openCloseEm2018T1} 
                 openCloseEm2018T3={openCloseEm2018T3} map={map} openMap={openMap} openVisualizarPdf={openVisualizarPdf} pdf={pdf} 
                 openCloseHumParFis={openCloseHumParFis} openCloseHumParIn={openCloseHumParIn} openCloseHumParIno={openCloseHumParIno} openCloseHumParMicro={openCloseHumParMicro} openCloseHumParOrg={openCloseHumParOrg}
@@ -121,38 +128,22 @@ export default function Home() {
                 <AreaEfectivaPoligono />
                 <AreaInfluenciaAmbientalPuntos />
                 <AreaEfectivaPuntos />
+
                 {estado.em2016T2 === 'close'?null:<Em2016T2 openCloseVic={openCloseVic} />}
-                {
-                    estado.em2017T2 === 'close'?null:<Em2017T2 />
-                }
-                {
-                    estado.em2018T1 === 'close'?null:<Em2018T1 />
-                }
-                {
-                    estado.em2018T3 === 'close'?null:<Em2018T3 />
-                }
-                {
-                    humeda.parMicro === 'close'?null:<HumedaParMicro />
-                }
-                {
-                    humeda.parOrg === 'close'?null:<HumedaParOrg/>
-                }
-                {
-                    humeda.parFis === 'close'?null:<HumedaParFis />
-                }
-                {
-                    humeda.parIn === 'close'?null:<HumedaParIn />
-                }
-                {
-                    humeda.parIno === 'close'?null:<HumedaParIno />
-                }
+                {estado.em2017T2 === 'close'?null:<Em2017T2 />}
+                {estado.em2018T1 === 'close'?null:<Em2018T1 />}
+                {estado.em2018T3 === 'close'?null:<Em2018T3 />}
+                {humeda.parMicro === 'close'?null:<HumedaParMicro />}
+                {humeda.parOrg === 'close'?null:<HumedaParOrg/>}
+                {humeda.parFis === 'close'?null:<HumedaParFis />}
+                {humeda.parIn === 'close'?null:<HumedaParIn />}
+                {humeda.parIno === 'close'?null:<HumedaParIno />}
+                {lim.dist === 'close'?null:<Distritos />}
+                {lim.prov === 'close'?null:<Provincia />}
+                {lim.dep === 'close'?null:<Departamentos />}
             </MapContainer>
-            {
-                pdf === false?null:<VisualizarPdf closeVisualizarPdf={closeVisualizarPdf} />
-            }
-            {
-                log === 'close'?null:<Login closeLog={closeLog} />
-            }
+            {pdf === false?null:<VisualizarPdf closeVisualizarPdf={closeVisualizarPdf} />}
+            {log === 'close'?null:<Login closeLog={closeLog} />}
         </div>
     )
 }
@@ -176,7 +167,7 @@ function VisualizarPdf(props){
 
 function Login(props){
     return(
-        <div className="flex justify-center items-center absolute top-0 h-screen w-full opacity" style={{zIndex:"2000"}}>
+        <div className="flex justify-center items-center absolute top-0 h-screen w-full opacity px-4 lg:px-0" style={{zIndex:"2000"}}>
             <div className="flex-1 max-w-md bg-white p-5">
                 <div className='flex items-center justify-between'>
                     <h1>Geovisor</h1>

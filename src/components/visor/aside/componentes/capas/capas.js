@@ -5,10 +5,10 @@ export default function Capas(props){
     const [state, setState] = useState({caliAgua:'close',caliSuelo:'close',caliAire:'close',bio:'close',hidro:'close'});
 
     return(
-        <div className="absolute top-0 right-14 h-screen w-96 bg-white border-r border-gray-200 overflow-y-auto overflow-x-hidden" style={{zIndex:"1000"}}>
-            <div className="flex w-96 h-10">
-                <div className="fixed flex items-center w-96 h-10 background-color">
-                    <div className="flex items-center w-full gap-2 h-6 px-4 border-r-2 border-blue-500">
+        <div className="absolute top-0 right-14 h-screen w-80 lg:w-96 bg-white border-r border-gray-200 overflow-y-auto overflow-x-hidden" style={{zIndex:"1000"}}>
+            <div className="flex w-80 lg:w-96 h-10">
+                <div className="fixed flex items-center w-80 lg:w-96 h-10 background-color">
+                    <div className="flex items-center w-full gap-2 h-6 px-4 border-r-2 border-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="white" class="bi bi-stack" viewBox="0 0 16 16">
                             <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.598.598 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.598.598 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.598.598 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535L7.733.063z"/>
                             <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z"/>
@@ -17,7 +17,9 @@ export default function Capas(props){
                     </div>
                 </div>
             </div>
-            <div className="flex items-center px-4 h-10 back-color ">
+            {
+                /**
+                 * <div className="flex items-center px-4 h-10 back-color">
                 <div className="flex w-full h-6 ">
                     <div className="flex items-center justify-center bg-gray-200 h-6 w-10">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
@@ -27,12 +29,17 @@ export default function Capas(props){
                     <input className="input w-full h-6 " />
                 </div>
             </div>
-            <div className="px-4">
-                <h1 className="flex items-center text-sm text-color border-b border-gray-500 w-full h-10">Estaciones de monitoreo</h1>
-            </div>
-            <div className="">
-                <Input nombre={'Estaciones de muestreo'} estado={props.panam} evento={props.hundleClicClosePanam} />
-                <div className="px-4" onClick={(e)=>{ e.preventDefault(), setState({...state, caliAgua:state.caliAgua === 'open'?'close':'open'})}} >
+                 */
+            }
+            <div className="mt-2">
+                <Input nombre={'Límites políticos distrititales'} estado={props.lim.dist} evento={props.openCloseLimDist} />
+                <Input nombre={'Límites políticos provinciales'} estado={props.lim.prov} evento={props.openCloseLimProv} />
+                <Input nombre={'Límites políticos departamentales'} estado={props.lim.dep} evento={props.openCloseLimDep} />
+                <Input nombre={'Estaciones de monitoreo'} estado={props.panam} evento={props.hundleClicClosePanam} />
+                <div className="px-4">
+                    <h1 className="flex items-center text-sm text-color border-b border-gray-500 w-full h-8">Monitoreos</h1>
+                </div>
+                <div className="px-4 mt-2" onClick={(e)=>{ e.preventDefault(), setState({...state, caliAgua:state.caliAgua === 'open'?'close':'open'})}} >
                     <div className={`flex items-center gap-1 h-7`}>
                         {state.caliAgua === 'close'?<Close />:<Open />}
                         <h1 className="text-sm text-color cursor-pointer">Calidad del agua y efluentes</h1>

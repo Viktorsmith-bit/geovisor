@@ -5,11 +5,11 @@ import {app} from '../../../../firebase';
 import {ref, onValue} from "firebase/database";
 import Loading from '../loading/loading';
 
-function Departamentos(){
+function Distritos(){
     const [state, setState] = useState();
     useEffect(()=>{
         async function PromiseDB(){
-            const starCountCor = ref(app, "departamentos");
+            const starCountCor = ref(app, "distritos");
             return new Promise((resolve)=>{
                 onValue(starCountCor, (snapshot) => {
                     const dbRef = snapshot.val();
@@ -33,7 +33,7 @@ function Departamentos(){
         getStatic();
     })
 
-    const blackOptionsPermafrost = {color:"#EDBB99"}
+    const blackOptionsPermafrost = {color:"#D5F5E3"}
     
     const Popup = ({ feature }) => {
         let popupContent;
@@ -45,7 +45,9 @@ function Departamentos(){
                 <p className=''>
                     <span className='font-bold text-sm'>DEPARTAMENTO:</span> {feature.properties.DEPARTAMEN}
                     <br></br>
-                    <span className='font-bold text-sm'>CAPITAL:</span> {feature.properties.CAPITAL}
+                    <span className='font-bold text-sm'>PROVINCIA:</span> {feature.properties.PROVINCIA}
+                    <br></br>
+                    <span className='font-bold text-sm'>DISTRITO:</span> {feature.properties.DISTRITO}
                     <br></br>
                     <span className='font-bold text-sm'>FUENTE:</span> {feature.properties.FUENTE}
                 </p>
@@ -69,4 +71,4 @@ function Departamentos(){
     );
 }
 
-export default React.memo(Departamentos);
+export default React.memo(Distritos);

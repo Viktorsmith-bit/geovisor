@@ -51,26 +51,29 @@ export default function ResetPassword() {
             <div className='border border-gray-200 p-5 bg-white mt-10'>
                 <h1 className='text-center'>Restablecer la contraseña</h1>
                 <form className='mt-5'>
-                <div className='w-full lg:flex-1'>
-                    <div className='flex gap-1 items-center mt-1'>
-                    <div className='flex items-center border border-gray-300 px-2 h-10'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-envelope-fill" viewBox="0 0 16 16">
-                        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
-                        </svg>
-                    </div>
-                    <input value={cor} onChange={captarCambiosCor} type='email' className='text-sm w-full h-10 border border-gray-300 px-3 rounded-md-r' placeholder='Ingrese su correo' />
-                    <div onClick={limpiar} className='flex items-center border border-gray-300 px-2 h-10 cursor-pointer'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-x" viewBox="0 0 16 16">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                        </svg>
-                    </div>
-                    </div>
-                </div>
-                <h1 className='mt-2 h-6 text-xs text-gray-500'>{not}</h1>
-                <button onClick={Reset} className='py-2 mt-2 w-full text-white text-sm back-color'>Enviar enlace</button>
+                  <div className='w-full lg:flex-1'>
+                      <div className='flex gap-1 items-center mt-1'>
+                      <div className='flex items-center border border-gray-300 px-2 h-10'>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-envelope-fill" viewBox="0 0 16 16">
+                          <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                          </svg>
+                      </div>
+                      <input value={cor} onChange={captarCambiosCor} type='email' className='text-sm w-full h-10 border border-gray-300 px-3 rounded-md-r' placeholder='Ingrese su correo' />
+                      <div onClick={limpiar} className='flex items-center border border-gray-300 px-2 h-10 cursor-pointer'>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-x" viewBox="0 0 16 16">
+                          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                      </div>
+                      </div>
+                  </div>
+                  <h1 className='mt-2 h-6 text-xs text-gray-500'>{not}</h1>
+                  <button onClick={Reset} className='py-2 mt-2 w-full text-white text-sm back-color'>Enviar enlace</button>
                 </form>
                 <Link href={"/"}>
-                    <button className='py-2 mt-2 w-full text-sm' style={{backgroundColor:'rgb(243, 244, 241)'}}>Volver</button>
+                    <button className='py-2 mt-2 w-full text-sm hidden lg:block' style={{backgroundColor:'rgb(243, 244, 241)'}}>Volver</button>
+                </Link>
+                <Link href={"/login"}>
+                    <button className='py-2 mt-2 w-full text-sm lg:hidden' style={{backgroundColor:'rgb(243, 244, 241)'}}>Volver</button>
                 </Link>
             </div>
           </div>

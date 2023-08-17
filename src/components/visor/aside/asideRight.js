@@ -83,15 +83,15 @@ export default function Aside(props){
                 </div>
             </div>
             <div onClick={props.openLog} className={`flex justify-center items-center h-10 w-14 cursor-pointer mb-4 hover:bg-gray-200`}>
-                <div className="flex items-center justify-center rounded-full h-10 w-10 background-color">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" className="bi bi-person-circle" viewBox="0 0 16 16">
+                <div className="flex items-center justify-center rounded-full h-10 w-10 bg-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                     </svg>
                 </div>
             </div>
             {
-                capas === "closeCap"?null:<Capas panam={props.panam} hundleClicClosePanam={props.hundleClicClosePanam} state={props.state} vic={props.vic} humeda={props.humeda} openCloseHumParFis={props.openCloseHumParFis} openCloseHumParIn={props.openCloseHumParIn} openCloseHumParIno={props.openCloseHumParIno} openCloseHumParMicro={props.openCloseHumParMicro} openCloseHumParOrg={props.openCloseHumParOrg} estado={props.estado} openCloseEm2016T2={props.openCloseEm2016T2} openCloseEm2017T2={props.openCloseEm2017T2} openCloseEm2018T1={props.openCloseEm2018T1} openCloseEm2018T3={props.openCloseEm2018T3} />
+                capas === "closeCap"?null:<Capas openCloseLimProv={props.openCloseLimProv} openCloseLimDist={props.openCloseLimDist} openCloseLimDep={props.openCloseLimDep} lim={props.lim} panam={props.panam} hundleClicClosePanam={props.hundleClicClosePanam} state={props.state} vic={props.vic} humeda={props.humeda} openCloseHumParFis={props.openCloseHumParFis} openCloseHumParIn={props.openCloseHumParIn} openCloseHumParIno={props.openCloseHumParIno} openCloseHumParMicro={props.openCloseHumParMicro} openCloseHumParOrg={props.openCloseHumParOrg} estado={props.estado} openCloseEm2016T2={props.openCloseEm2016T2} openCloseEm2017T2={props.openCloseEm2017T2} openCloseEm2018T1={props.openCloseEm2018T1} openCloseEm2018T3={props.openCloseEm2018T3} />
             }
             {
                 leyen === "closeLey"?null:<Leyenda />
