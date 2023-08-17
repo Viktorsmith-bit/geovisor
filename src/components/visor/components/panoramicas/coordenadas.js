@@ -3,7 +3,7 @@ import {listaCoordenadas} from "./lista";
 import {Marker, Popup} from "react-leaflet";
 import {customMarkerIcon} from "./iconLocation";
 
-export default function(props){
+export default function Coordenadas(props){
 
     return(
         <Fragment>
