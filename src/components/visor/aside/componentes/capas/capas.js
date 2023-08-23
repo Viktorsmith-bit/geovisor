@@ -32,7 +32,7 @@ export default function Capas(props){
                  */
             }
             <div className="mt-2">
-                <Input nombre={'Límites políticos distrititales'} estado={props.lim.dist} evento={props.openCloseLimDist} />
+                <Input nombre={'Límites políticos distritales'} estado={props.lim.dist} evento={props.openCloseLimDist} />
                 <Input nombre={'Límites políticos provinciales'} estado={props.lim.prov} evento={props.openCloseLimProv} />
                 <Input nombre={'Límites políticos departamentales'} estado={props.lim.dep} evento={props.openCloseLimDep} />
                 <Input nombre={'Estaciones de monitoreo'} estado={props.panam} evento={props.hundleClicClosePanam} />

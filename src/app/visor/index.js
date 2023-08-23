@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
-import {MapContainer, TileLayer, useMapEvent, useMap} from "react-leaflet";
+import {MapContainer, TileLayer, useMapEvent, useMap, WMSTileLayer } from "react-leaflet";
 import { ImageMapLayer, FeatureLayer } from "react-esri-leaflet";
 import EsriLeafletGeoSearch from "react-esri-leaflet/plugins/EsriLeafletGeoSearch";
 import SearchButton from '../../components/visor/components/search';
@@ -23,7 +23,6 @@ import AreaInfluenciaAmbientalPuntos from "@/components/visor/database/area_infl
 import Em2016T2 from "@/components/visor/database/agua_subterranea/em_2016_t2";
 import Em2017T2 from "@/components/visor/database/agua_subterranea/em_2017_t2";
 import Em2018T1 from "@/components/visor/database/agua_subterranea/em_2018_t1";
-import Em2018T3 from "@/components/visor/database/agua_subterranea/em_2018_t3";
 import HumedaParMicro from '../../components/visor/database/agua_superficial/temp_humeda/parmicro_em_mar_2019';
 import HumedaParOrg from '../../components/visor/database/agua_superficial/temp_humeda/parorg_em_mar_2019';
 import HumedaParFis from '../../components/visor/database/agua_superficial/temp_humeda/parfis_em_mar_2019';
@@ -94,10 +93,13 @@ export default function Home() {
             />
             <Geovisor />
             {vic?null:<Panoramicas hundleClicClose360={hundleClicClose360} state={state}/>}
-            <MapContainer id="leaflet-container" center={[-11.65, -76.142071978681196]} zoom={11} scrollWheelZoom={true}>
+            <MapContainer id="leaflet-container" center={[-11.65, -76.142071978681196]} zoom={6} scrollWheelZoom={true}>
                 <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
                 <TileLayer attribution='Developed by Wlash Perú' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}" ext='png' />
                 <TileLayer attribution='Developed by Wlash Perú' url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}" ext='png' />
+                
+                <WMSTileLayer url="https://geo.serfor.gob.pe/geoservicios/services/Servicios_OGC/Zonificacion_Forestal/MapServer/WMSServer?request=GetCapabilities&service=WMS" layers='TOPO-WMS' />
+                
                 {
                     map === "1"?<TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />:null
                 }
@@ -132,7 +134,6 @@ export default function Home() {
                 {estado.em2016T2 === 'close'?null:<Em2016T2 openCloseVic={openCloseVic} />}
                 {estado.em2017T2 === 'close'?null:<Em2017T2 />}
                 {estado.em2018T1 === 'close'?null:<Em2018T1 />}
-                {estado.em2018T3 === 'close'?null:<Em2018T3 />}
                 {humeda.parMicro === 'close'?null:<HumedaParMicro />}
                 {humeda.parOrg === 'close'?null:<HumedaParOrg/>}
                 {humeda.parFis === 'close'?null:<HumedaParFis />}

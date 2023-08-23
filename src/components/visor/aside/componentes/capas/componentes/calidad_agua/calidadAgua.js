@@ -28,13 +28,13 @@ export default function CalidadAgua(props){
         <LayerGroup>
             <Layer id="" nombre={'Agua subterránea'} estado={state1.aguaSub} evento={openCloseAguaSub}>
                 <Layer nombre={'2016'} estado={state2.ano2016} evento={openCloseAno2016}>
-                    <Input nombre={'EM TA-12-Temporada 2'} estado={props.estado.em2016T2} evento={props.openCloseEm2016T2} /> 
+                    <Input nombre={'EM TA-12'} estado={props.estado.em2016T2} evento={props.openCloseEm2016T2} /> 
                 </Layer>
                 <Layer nombre={'2017'} estado={state2.ano2017} evento={openCloseAno2017}>
-                    <Input nombre={'EM TA-12-Temporada 2'} estado={props.estado.em2017T2} evento={props.openCloseEm2017T2} /> 
+                    <Input nombre={'EM TA-12'} estado={props.estado.em2017T2} evento={props.openCloseEm2017T2} /> 
                 </Layer>
                 <Layer nombre={'2018'} estado={state2.ano2018} evento={openCloseAno2018}>
-                    <Input nombre={'EM TA-12-Temporada 2'} estado={props.estado.em2018T1} evento={props.openCloseEm2018T1} /> 
+                    <Input nombre={'EM TA-12'} estado={props.estado.em2018T1} evento={props.openCloseEm2018T1} /> 
                 </Layer>
             </Layer>
             <Layer id="" nombre={'Agua superficial'} estado={state1.aguaSup} evento={openCloseAguaSup}>
