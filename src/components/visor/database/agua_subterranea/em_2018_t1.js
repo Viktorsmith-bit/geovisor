@@ -211,8 +211,11 @@ function Em2016T2(){
                         </table>
                     </div>
                 </div>
-                <div className='flex items-center h-8'>
+                <div className='flex items-center gap-2 h-8'>
                     <h1 className='text-blue'>Temporada 2</h1>
+                    <a target="_blank" href='https://walshperu-my.sharepoint.com/personal/vmedina_walshp_com_pe/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fvmedina%5Fwalshp%5Fcom%5Fpe%2FDocuments%2FDocumentos%2FTOROMOCHO%2F3%2E2%2E5%2E4%2E1%20Calidad%20de%20Agua%20superficial%5F07012021%2Epdf&parent=%2Fpersonal%2Fvmedina%5Fwalshp%5Fcom%5Fpe%2FDocuments%2FDocumentos%2FTOROMOCHO'>
+                        <h1 className='text-blue underline'>Ver ensayo</h1>
+                    </a>
                 </div>
             </div>
         );
