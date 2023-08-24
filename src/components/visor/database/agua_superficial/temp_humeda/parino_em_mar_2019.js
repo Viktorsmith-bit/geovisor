@@ -193,7 +193,7 @@ function Index(){
     };
     
     const icono = new Icon({
-        iconUrl:"alfiler.png",
+        iconUrl:"marcador.png",
         iconSize:[35,35]
     })
 

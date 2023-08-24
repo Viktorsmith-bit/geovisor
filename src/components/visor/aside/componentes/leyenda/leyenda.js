@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Leyenda(){
     return(
         <div className="absolute top-0 right-14 h-screen w-80 lg:w-96 bg-white border-r border-gray-200 overflow-y-auto overflow-x-hidden" style={{zIndex:"1000"}}>
@@ -12,7 +14,29 @@ export default function Leyenda(){
                 </div>
             </div>
             <div className="p-4">
-
+                <h1 className="text-sm">Límites políticos</h1>
+                <div className="flex items-center gap-1 mt-2">
+                    <div className="h-3.5 w-3.5 rounded-sm" style={{backgroundColor:'#D5F5E3'}} ></div>
+                    <h1 className="text-sm">Distritales</h1>
+                </div>
+                <div className="flex items-center gap-1">
+                    <div className="h-3.5 w-3.5 rounded-sm" style={{backgroundColor:'#FCF3CF'}} ></div>
+                    <h1 className="text-sm">Provinciales</h1>
+                </div>
+                <div className="flex items-center gap-1">
+                    <div className="h-3.5 w-3.5 rounded-sm" style={{backgroundColor:'#EDBB99'}} ></div>
+                    <h1 className="text-sm">Departamentales</h1>
+                </div>
+                <h1 className="text-sm mt-4">Fotografías</h1>
+                <div className="flex items-center gap-1 mt-2">
+                    <Image src={'/camera.png'} width={20} height={20} alt={'Walsh Perú'} />
+                    <h1 className="text-sm">360°</h1>
+                </div>
+                <h1 className="text-sm mt-4">Estaciones de monitoreo</h1>
+                <div className="flex items-center gap-1 mt-2">
+                    <Image src={'/marcador.png'} width={20} height={20} alt={'Walsh Perú'} />
+                    <h1 className="text-sm">Estación</h1>
+                </div>
             </div>
         </div>
     );
