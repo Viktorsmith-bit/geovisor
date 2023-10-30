@@ -12,9 +12,15 @@ export default function Pdf(props){
                     </div>
                 </div>
             </div>
-            <div className="px-4">
-                <h1 className="flex items-center text-sm text-color border-b border-gray-500 w-full h-10">Resoluciones</h1>
+            <div className="flex h-10 border-b border-gray-200">
+                <div className="flex items-center justify-center flex-1 bg-gray-200 cursor-pointer">
+                    <h1 className="text-sm">Aprobados</h1>
+                </div>
+                <div className="flex items-center justify-center flex-1 cursor-pointer">
+                    <h1 className="text-sm">En trámite</h1>
+                </div>
             </div>
+            <h1 className="flex items-center px-4 text-sm text-color border-b border-gray-200 w-full h-10">Resoluciones</h1>
             <div className="p-4">
                 <div className="flex flex-col gap-2">
                     <Documentos texto="RD Nº00083-2021-SENACE-PE/DEAR" url="https://walshperu-my.sharepoint.com/personal/vmedina_walshp_com_pe/_layouts/15/guestaccess.aspx?docid=0a395b15e7b974ebdb0a72311708af01e&authkey=Aek9_rSG9-FCD_FXcCdzrIA&e=xfZKI2" />

@@ -9,7 +9,7 @@ function AreaEfectivaPoligono(){
     const [state, setState] = useState();
     useEffect(()=>{
         async function PromiseDB(){
-            const starCountCor = ref(app, "area_efectiva_poligono");
+            const starCountCor = ref(app, "comp_apro_poligonos");
             return new Promise((resolve)=>{
                 onValue(starCountCor, (snapshot) => {
                     const dbRef = snapshot.val();
@@ -43,7 +43,7 @@ function AreaEfectivaPoligono(){
         return (
             <Fragment>
                 <p className=''>
-                    <span className='font-bold text-sm'>ESTADO:</span><span> EN</span> {feature.properties.folders}
+                    {feature.properties.atributo}
                 </p>
             </Fragment>
         );
@@ -56,10 +56,26 @@ function AreaEfectivaPoligono(){
         layer.bindPopup(popupContent);
     };
 
+    const colorOptions = (atribute)=>{
+        return atribute === "Area_Estudio" ? '#d6d6ff':
+               atribute === "Area_Influencia_Directa_Ambiental" ? 'yellow':
+               atribute === "Area_Influencia_Indirecta_Ambiental" ? 'orange':
+               atribute === "AREA_PROYECTO" ? '#244ead':
+               atribute === "Areas_CIRA" ? '#003994':null
+    }
+
     return(
         <Fragment>
             {
-                data === undefined?<Loading />:<GeoJSON data={data} onEachFeature={onEachFeature} style={blackOptionsStyle} />
+                data === undefined?<Loading />:<GeoJSON data={data} onEachFeature={onEachFeature} style={(feature)=>{
+                    return {
+                            color:colorOptions(feature.properties.atributo),
+                            weight: 2,
+                            dashArray: '3',
+                            fillOpacity: 0.3
+                        }
+                    }
+                } />
             }
         </Fragment>
     );

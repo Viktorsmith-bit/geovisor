@@ -9,7 +9,7 @@ function AreaEfectivaPuntos(){
     const [state, setState] = useState();
     useEffect(()=>{
         async function PromiseDB(){
-            const starCountCor = ref(app, "area_efectiva_puntos");
+            const starCountCor = ref(app, "comp_apro_puntos");
             return new Promise((resolve)=>{
                 onValue(starCountCor, (snapshot) => {
                     const dbRef = snapshot.val();
@@ -73,7 +73,7 @@ function AreaEfectivaPuntos(){
     return(
         <Fragment>
             {
-                data === undefined?<Loading />:<GeoJSON data={data} onEachFeature={onEachFeature} style={blackOptionsStyle} pointToLayer={pointToLayer}/>
+                data === undefined?<Loading />:<GeoJSON data={data} onEachFeature={onEachFeature} pointToLayer={pointToLayer} style={blackOptionsStyle}/>
             }
         </Fragment>
     );

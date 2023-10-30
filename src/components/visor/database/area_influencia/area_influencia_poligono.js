@@ -9,7 +9,7 @@ function Index(){
     const [state, setState] = useState();
     useEffect(()=>{
         async function PromiseDB(){
-            const starCountCor = ref(app, "area_influencia_ambiental_poligono");
+            const starCountCor = ref(app, "comp_apro_poligonos");
             return new Promise((resolve)=>{
                 onValue(starCountCor, (snapshot) => {
                     const dbRef = snapshot.val();

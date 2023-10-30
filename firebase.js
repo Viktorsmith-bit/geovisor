@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getAuth} from "firebase/auth";
 
-const quaterneryAppConfig = {
+const quaterneryAppConfigVector = {
     apiKey: "AIzaSyBkw9Qp-kSeEdm-zQ5_pM4kErctxRo_qZo",
     authDomain: "geovisor-986e8.firebaseapp.com",
     databaseURL: "https://geovisor-986e8-default-rtdb.firebaseio.com",
@@ -13,7 +13,7 @@ const quaterneryAppConfig = {
 };
 
 // Initialize Firebase
-const quaterneryApp = initializeApp(quaterneryAppConfig, 'quaternery');
+const quaterneryAppVector = initializeApp(quaterneryAppConfigVector, 'quaterneryVector');
 
-export const app =  getDatabase(quaterneryApp);
-export const auth = getAuth(quaterneryApp);
+export const app =  getDatabase(quaterneryAppVector);
+export const auth = getAuth(quaterneryAppVector);
