@@ -3,7 +3,7 @@ import { Fragment } from "react";
 export function AguaSubParam(props){
     return(
         <Fragment>
-            <select name="select" onChange={props.captarCambiosParam} className={`text-sm px-2 h-7 bg-gray-200 cursor-pointer input ${props.tipo === 'agua_subterranea'?'bloque':'hidden'} `}>
+            <select name="select" onChange={props.captarCambiosParam} className={`text-sm px-2 h-7 bg-gray-200 cursor-pointer input ${props.tipo.tipo1 === 'agua_subterranea'?'bloque':'hidden'} `}>
                 <option value="Caudal" >1. Caudal</option>
                 <option value="Conductividad">2. Conductividad</option>
                 <option value="Oxígeno Disuelto">3. Oxígeno Disuelto</option>
@@ -34,7 +34,7 @@ export function AguaSubParam(props){
 
 export function AguaSupParam(props){
     return(
-        <div className={`${props.tipo === 'agua_superficial'?'bloque':'hidden'}`} >
+        <div className={`${props.tipo.tipo1 === 'agua_superficial'?'bloque':'hidden'}`} >
             <select name="select" onChange={props.captarCambiosParam} className={`bg-gray-200 text-sm px-2 h-7 cursor-pointer input ${props.subTipo === 'Parámetro Microbiológico y Parasitológico'?'bloque':'hidden'}`}>
                 <option value="Coliformes Termales" defaultValue>1. Coliformes Termales</option>
                 <option value="Huevos Helmintos" >2. Huevos Helmintos</option>
@@ -99,7 +99,7 @@ export function AguaSupParam(props){
 export function PuntosVertimento(props){
     return(
         <Fragment>
-            <select name="select" onChange={props.captarCambiosParam} className={`bg-gray-200 text-sm px-2 h-7 cursor-pointer input ${props.tipo === 'puntos_vertimento'?'bloque':'hidden'} `}>
+            <select name="select" onChange={props.captarCambiosParam} className={`bg-gray-200 text-sm px-2 h-7 cursor-pointer input ${props.tipo.tipo1 === 'puntos_vertimento'?'bloque':'hidden'} `}>
                 <option value="pH" defaultValue>1. pH</option>
                 <option value="Temperatura">2. Temperatura</option>
                 <option value="Conductividad">3. Conductividad</option>

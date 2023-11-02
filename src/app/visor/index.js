@@ -126,7 +126,7 @@ export default function Home() {
                 {panam === "close"?null:<Coordenadas360 hundleClicOpen360={hundleClicOpen360}/>}
                 <SearchButton />
                 <HomeButton />
-                {/**{estado.em2016T2 === 'close'?<AreaEfectivaPoligono />:null} */}
+                {estado.em2016T2 === 'close'?<AreaEfectivaPoligono />:null}
                 {estado.em2016T2 === 'close'?null:<Em2016T2 openCloseVic={openCloseVic} />}
                 {estado.em2017T2 === 'close'?null:<Em2017T2 />}
                 {estado.em2018T1 === 'close'?null:<Em2018T1 />}

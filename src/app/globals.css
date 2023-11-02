@@ -10,14 +10,12 @@
   left: 0;
   right: 0
 }
-
 .image {
   background-image: url("../../public/fondos/minera.jpg");
   background-position: 100% 100%;
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 .border{
   border-right: solid 1px rgb(185,192,198);
 }

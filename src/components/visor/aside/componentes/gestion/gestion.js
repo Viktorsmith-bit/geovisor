@@ -1,6 +1,7 @@
 import { Fragment, useState} from "react";
 import Filtro from './filtro/filtro';
 import Datos from "./datos/datos";
+import XLSX from "xlsx";
 
 export default function Leyenda(){
     const [filtro, setFiltro] = useState('closeFil')
@@ -125,7 +126,7 @@ export default function Leyenda(){
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(40,40,40)" class="bi bi-play-fill" viewBox="0 0 16 16">
                                 <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                             </svg>
-                            <h1 className="text-sm">Estación TA-12</h1>
+                            <h1 className="text-sm">Exportar a excel</h1>
                         </div>
                     </div>
                     <div className="flex items-center h-10 px-4 border-b border-gray-200">
