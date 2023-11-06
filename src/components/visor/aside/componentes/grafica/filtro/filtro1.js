@@ -1,6 +1,6 @@
-import { AguaSubParam } from "../../parametros/parametros";
-import { AguaSupParam } from "../../parametros/parametros";
-import { PuntosVertimento } from "../../parametros/parametros";
+import { AguaSubParam } from "../parametros/parametros";
+import { AguaSupParam } from "../parametros/parametros";
+import { PuntosVertimento } from "../parametros/parametros";
 
 export function Filtro1(props){
     return(
