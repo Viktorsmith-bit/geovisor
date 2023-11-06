@@ -3,9 +3,9 @@ import {Fragment, useRef, useState} from "react";
 import {ref, onValue, set} from "firebase/database";
 import {app} from '../../../../../../../firebase/database';
 import Datos from '../data/datos';
-import Filtro1 from './componentes/filtro1';
-import Filtro2 from './componentes/filtro2';
-import Filtro3 from './componentes/filtro3';
+import {Filtro1} from './componentes/filtro1';
+import {Filtro2} from './componentes/filtro2';
+import {Filtro3} from './componentes/filtro3';
 
 export default function Filtro(){
     const [valor, setValor] = useState()

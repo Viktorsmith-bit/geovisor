@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-export default function Filtro3(props){
+export function Filtro3(props){
     return(
         <div className={`${props.fuente === 'Calidad del Suelo'?'bloque':'hidden'}`}>
             <div className='flex gap-2'>

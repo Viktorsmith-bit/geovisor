@@ -1,5 +1,5 @@
 
-export default function Filtro2(props){
+export function Filtro2(props){
     return(
         <div className={`${props.fuente === 'Calidad del Aire'?'bloque':'hidden'}`}>
             <div className='flex gap-2'>

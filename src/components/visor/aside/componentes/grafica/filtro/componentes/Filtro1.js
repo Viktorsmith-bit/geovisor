@@ -2,7 +2,7 @@ import { AguaSubParam } from "../../parametros/parametros";
 import { AguaSupParam } from "../../parametros/parametros";
 import { PuntosVertimento } from "../../parametros/parametros";
 
-export default function Filtro1(props){
+export function Filtro1(props){
     return(
         <div className={`${props.fuente === 'Calidad de Agua y Efluentes'?'bloque':'hidden'}`}>
             <div className='flex gap-2'>
