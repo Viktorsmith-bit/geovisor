@@ -1,9 +1,6 @@
-import {useState} from "react";
 import Filtro from "./filtro/filtro";
 
 export default function Grafica(props){
-    const [fuente, setFuente] = useState('Calidad de Agua y Efluentes');
-    function captarCambiosFuente(e){e.preventDefault(),setFuente(e.target.value)}
     return(
         <div className={`absolute bottom-0 right-0 w-screen pr-14 ${props.gra === 'closeGra'?'hidden':'bloque'}`} style={{zIndex:"1000"}}>
             <div className="w-full h-96 bg-white border-r border-gray-800">
@@ -16,20 +13,8 @@ export default function Grafica(props){
                         </svg>
                     </div>
                 </div>
-                <Filtro fuente={fuente} />
+                <Filtro />
             </div>
         </div>
     );
-}
-{
-    /**
-     * <div className="w-full flex items-center gap-3">
-                        <h1 className="text-base text-white">Análisis de tendencias</h1>
-                        <select name="select" onChange={captarCambiosFuente} className='text-sm px-2 h-7 rounded-sm cursor-pointer input text-white' style={{backgroundColor:'rgb(60,60,60)'}}>
-                            <option value="Calidad de Agua y Efluentes" defaultValue>Calidad de Agua y Efluentes</option>
-                            <option value="Calidad del Aire">Calidad del Aire</option>
-                            <option value="Calidad del Suelo">Calidad del Suelo</option>
-                        </select>
-                    </div>
-     */
 }
