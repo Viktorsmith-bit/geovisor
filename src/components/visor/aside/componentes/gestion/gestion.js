@@ -3,7 +3,7 @@ import Filtro from './filtro/filtro';
 import Datos from "./datos/datos";
 import XLSX from "xlsx";
 
-export default function Leyenda(){
+export default function Gestion(props){
     const [filtro, setFiltro] = useState('closeFil')
     const [fuente, setFuente] = useState('Calidad de Agua y Efluentes');
     const [tipo, setTipo] = useState('Agua subterránea')
@@ -90,13 +90,13 @@ export default function Leyenda(){
     }
 
     return(
-        <Fragment>
+        <div className={`${props.ges === 'openGes'?'bloque':'hidden'}`}>
             <Filtro filtro={filtro} captarCambiosFuente={captarCambiosFuente} captarCambiosEsta={captarCambiosEsta}
                 captarCambiosTipo={captarCambiosTipo} captarCambiosFecha={captarCambiosFecha} captarCambiosSubTipo={captarCambiosSubTipo}
                 captarCambiosEca={captarCambiosEca} captarCambiosTemp={captarCambiosTemp} captarCambiosMes={captarCambiosMes} 
                 fuente={fuente} temp={temp} tipo={tipo} subTipo={subTipo} captarCambiosParam={captarCambiosParam}
             />
-            <div className="absolute top-0 right-14 h-screen w-80 lg:w-96 bg-white border-r border-red-400 pt-52" style={{zIndex:"1000"}}>
+            <div className="absolute top-0 right-14 h-screen w-80 lg:w-96 bg-white border-r border-red-300 pt-52" style={{zIndex:"1000"}}>
                 <div className="absolute top-0 right-0 h-52 w-full bg-white">
                     <div className="flex items-center h-10 background-color">
                         <div className="flex items-center w-full gap-2 h-6 px-4">
@@ -123,7 +123,7 @@ export default function Leyenda(){
                     <div className="flex items-center justify-center h-10 border-b border-gray-200">
                         <h1 className="flex-1 text-center text-sm border-r border-gray-200">{tipo}</h1>
                         <div className="flex flex-1 items-center justify-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(40,40,40)" class="bi bi-play-fill" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(40,40,40)" className="bi bi-play-fill" viewBox="0 0 16 16">
                                 <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                             </svg>
                             <h1 className="text-sm">Exportar a excel</h1>
@@ -138,7 +138,7 @@ export default function Leyenda(){
                 </div>
                 <Datos temp={temp} tipo={tipo} eca={eca} ano={ano} mes={mes} param={param} subTipo={subTipo} esta={esta}/>
             </div>
-        </Fragment>
+        </div>
     );
 }
 

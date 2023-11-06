@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import {signInWithEmailAndPassword } from "firebase/auth";
-import {auth} from '../../firebase';
+import {auth} from '../../firebase/database';
 
 export default function Home(props) {
   const [cor, setCor] = useState('')

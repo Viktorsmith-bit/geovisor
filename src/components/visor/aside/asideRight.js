@@ -1,4 +1,5 @@
 import { Fragment, useState} from "react";
+import { useContextCapasMap } from "@/app/visor/map";
 import Capas from "./componentes/capas/capas";
 import Leyenda from "./componentes/leyenda/leyenda";
 import Mapas from "./componentes/mapas/mapas";
@@ -6,12 +7,13 @@ import Pdf from "./componentes/pdf/pdf";
 import Gestion from "./componentes/gestion/gestion";
 import Grafica from "./componentes/grafica/grafica";
 
-export default function Aside(props){
-    const [capas, setCapas] = useState('closeCap')
+export default function Aside(){
+    const {openLog} = useContextCapasMap()
+    const [capas, setCapas] = useState('openCap')
     const [leyen, setLeyen] = useState('closeLey')
     const [map, setMap] = useState('closeMap')
     const [pdf, setPdf] = useState('closePdf')
-    const [ges, setGes] = useState('openGes')
+    const [ges, setGes] = useState('closeGes')
     const [gra, setGra] = useState('closeGra')
     const [min, setMin] = useState('closeMin')
 
@@ -57,7 +59,7 @@ export default function Aside(props){
 
     function abrirGestion(e){
         e.preventDefault();
-        setGes(ges === "closeGes"?'openGes':'closeGes')
+        setGes(ges === "openGes"?'closeGes':'openGes')
         setCapas('closeCap')
         setMap('closeMap')
         setLeyen('closeLey')
@@ -83,10 +85,10 @@ export default function Aside(props){
 
     return(
         <Fragment>
-            <div className="flex flex-col justify-between absolute top-0 right-0 bg-white z-40 h-screen w-14" style={{zIndex:"2000"}} >
+            <div className="flex flex-col justify-between absolute top-0 right-0 bg-white h-screen w-14" style={{zIndex:"2000"}} >
                 <div className="section">
                     <div onClick={abrirGestion} className={`flex justify-center items-center h-10 w-14 cursor-pointer ${ges === 'closeGes'?'hover:bg-gray-200':'bg-gray-200'}`}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(40,40,40)" class="bi bi-sliders" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(40,40,40)" className="bi bi-sliders" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
                         </svg>
                     </div>
@@ -102,7 +104,7 @@ export default function Aside(props){
                         </svg>
                     </div>
                     <div onClick={abrirPdf} className={`flex justify-center items-center h-10 w-14 cursor-pointer ${pdf === 'closePdf'?'hover:bg-gray-200':'bg-gray-200'}`}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="rgb(40,40,40)" class="bi bi-journal-text" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="rgb(40,40,40)" className="bi bi-journal-text" viewBox="0 0 16 16">
                             <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
                             <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
                             <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
@@ -114,12 +116,12 @@ export default function Aside(props){
                         </svg>
                     </div>
                     <div onClick={abrirGrafica} className={`flex justify-center items-center h-10 w-14 cursor-pointer ${gra === 'closeGra'?'hover:bg-gray-200':'bg-gray-200'}`}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(40,40,40)" class="bi bi-graph-up" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(40,40,40)" className="bi bi-graph-up" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
                         </svg>
                     </div>
                 </div>
-                <div onClick={props.openLog} className={`flex justify-center items-center h-10 w-14 cursor-pointer mb-4 hover:bg-gray-200`}>
+                <div onClick={openLog} className={`flex justify-center items-center h-10 w-14 cursor-pointer mb-4 hover:bg-gray-200`}>
                     <div className="flex items-center justify-center rounded-full h-10 w-10 bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(40,40,40)" className="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -127,11 +129,11 @@ export default function Aside(props){
                         </svg>
                     </div>
                 </div>
-                <Capas capas={capas} openCloseLimProv={props.openCloseLimProv} openCloseLimDist={props.openCloseLimDist} openCloseLimDep={props.openCloseLimDep} lim={props.lim} panam={props.panam} hundleClicClosePanam={props.hundleClicClosePanam} state={props.state} vic={props.vic} humeda={props.humeda} openCloseHumParFis={props.openCloseHumParFis} openCloseHumParIn={props.openCloseHumParIn} openCloseHumParIno={props.openCloseHumParIno} openCloseHumParMicro={props.openCloseHumParMicro} openCloseHumParOrg={props.openCloseHumParOrg} estado={props.estado} openCloseEm2016T2={props.openCloseEm2016T2} openCloseEm2017T2={props.openCloseEm2017T2} openCloseEm2018T1={props.openCloseEm2018T1} openCloseEm2018T3={props.openCloseEm2018T3} />
-                {leyen === "closeLey"?null:<Leyenda />}
-                {map === "closeMap"?null:<Mapas map={props.map} openMap={props.openMap} />}
-                {pdf === "closePdf"?null:<Pdf openVisualizarPdf={props.openVisualizarPdf} pdf={props.pdf} />}
-                {ges === "openGes"?<Gestion />:null}
+                <Capas capas={capas} />
+                <Leyenda leyen={leyen} />
+                <Mapas map={map} />
+                <Pdf pdf={pdf} />
+                <Gestion ges={ges} />
                 <Grafica abrirGrafica={abrirGrafica} minimizarMax={minimizarMax} gra={gra} />
             </div>
             <div onClick={minimizarMax} className={`absolute bottom-4 left-4 flex items-center justify-center gap-2 h-9 w-44 bg-white rounded-sm cursor-pointer ${min === 'closeMin'?'hidden':'bloque'}`} style={{zIndex:"1000"}}>

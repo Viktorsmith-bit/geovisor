@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { MapasJson } from './components/mapasJson';
-
+import { useContextCapasMap } from "@/app/visor/map";
 export default function Mapas(props){
+    const {openMap} = useContextCapasMap()
     return(
-        <div className="absolute top-0 right-14 h-screen w-80 lg:w-96 bg-white border-r border-gray-200 overflow-y-auto overflow-x-hidden" style={{zIndex:"1000"}}>
-            <div className="w-80 lg:w-96 h-10">
+        <div className={`absolute top-0 right-14 h-screen w-80 lg:w-96 bg-white border-r border-gray-200 pt-10 ${props.map === 'closeMap'?'hidden':'bloque'}`} style={{zIndex:"1000"}}>
+            <div className="absolute top-0 right-0 h-10 w-80 lg:w-96 h-10">
                 <div className="fixed flex items-center w-80 lg:w-96 h-10 z-20 background-color">
                     <div className="flex items-center w-full gap-2 h-6 px-4 border-r-2 border-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-map-fill" viewBox="0 0 16 16">
@@ -14,10 +15,10 @@ export default function Mapas(props){
                     </div>
                 </div>
             </div>
-            <div className="flex flex-wrap gap-2 p-4">
+            <div className="flex flex-wrap gap-2 p-4 h-full overflow-y-auto overflow-x-hidden">
                 {
                     MapasJson.map((e)=>{
-                        return <div key={e.id} onClick={props.openMap} className="flex items-center gap-2 cursor-pointer w-full">
+                        return <div key={e.id} onClick={openMap} className="flex items-center gap-2 cursor-pointer w-full">
                             <div className="relative w-36 h-32">
                                 <Image id={e.id} layout='fill' className='z-10 object-cover cursor-pointer' src={`/mapas/${e.imagen}`} alt={'Walsh Perú'} />
                             </div>  

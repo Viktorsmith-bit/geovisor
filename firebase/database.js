@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { getAuth} from "firebase/auth";
 
 const quaterneryAppGeoText= {
     apiKey: "AIzaSyCOC9lpyEUDfsQrN2-Uh-hdi6XisvKkJOY",
@@ -14,3 +15,4 @@ const quaterneryAppGeoText= {
 // Initialize Firebase
 const quaterneryAppText = initializeApp(quaterneryAppGeoText, 'quaterneryText');
 export const app =  getDatabase(quaterneryAppText);
+export const auth = getAuth(quaterneryAppText);

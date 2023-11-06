@@ -1,6 +1,6 @@
 export default function Pdf(props){
     return(
-        <div className="absolute top-0 right-14 h-screen w-80 lg:w-96 bg-white border-r border-gray-200" style={{zIndex:"1000"}}>
+        <div className={`absolute top-0 right-14 h-screen w-80 lg:w-96 bg-white border-r border-gray-200 ${props.pdf === 'closePdf'?'hidden':'bloque'}`} style={{zIndex:"1000"}}>
             <div className="w-80 lg:w-96 h-10">
                 <div className="fixed flex items-center w-80 lg:w-96 h-10 background-color">
                     <div className="flex items-center w-full gap-2 h-6 px-4 border-r-2 border-blue-600">
@@ -10,14 +10,6 @@ export default function Pdf(props){
                         </svg>
                         <h1 className="text-sm text-white">Documentación</h1>
                     </div>
-                </div>
-            </div>
-            <div className="flex h-10 border-b border-gray-200">
-                <div className="flex items-center justify-center flex-1 bg-gray-200 cursor-pointer">
-                    <h1 className="text-sm">Aprobados</h1>
-                </div>
-                <div className="flex items-center justify-center flex-1 cursor-pointer">
-                    <h1 className="text-sm">En trámite</h1>
                 </div>
             </div>
             <h1 className="flex items-center px-4 text-sm text-color border-b border-gray-200 w-full h-10">Resoluciones</h1>

@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 
-const MapViewer = dynamic(()=>import('./index'), {ssr: false});
+const MapViewer = dynamic(()=>import('./map'), {ssr: false});
 
 export default function Home() {
 

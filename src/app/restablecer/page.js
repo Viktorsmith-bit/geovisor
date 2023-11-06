@@ -3,7 +3,7 @@ import {useState} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {sendPasswordResetEmail } from "firebase/auth";
-import {auth} from '../../../firebase';
+import {auth} from '../../../firebase/database';
 
 export default function ResetPassword() {
   const [cor, setCor] = useState('');

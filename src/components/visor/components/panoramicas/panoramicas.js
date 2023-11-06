@@ -1,9 +1,11 @@
+import { useContextCapasMap } from "@/app/visor/map";
 import { useState } from "react";
 import { listaCoordenadas } from "./lista";
 
-export default function Panoramicas(props){
+export default function Panoramicas(){
+    const {hundleClicClose360, state} = useContextCapasMap()
     const [statePanam, setStatePanam] = useState(()=>{
-        return (parseInt(props.state));
+        return (parseInt(state));
     });
 
     const back = (e)=>{
@@ -31,10 +33,10 @@ export default function Panoramicas(props){
                                     return <div key={e.id} className='flex flex-col-reverse lg:flex-row h-screen lg:h-auto'>
                                         <div className='flex flex-col justify-between w-full lg:w-80 bg-gray-100 px-4 py-4 h-full lg:h-auto'>
                                             <div className='container'>
-                                                <svg onClick={props.hundleClicClose360} xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#434040" className="hidden lg:block cursor-pointer bi bi-x-lg" viewBox="0 0 16 16">
+                                                <svg onClick={hundleClicClose360} xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#434040" className="hidden lg:block cursor-pointer bi bi-x-lg" viewBox="0 0 16 16">
                                                     <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
                                                 </svg>
-                                                <div onClick={props.hundleClicClose360} className='flex items-center gap-1 cursor-pointer w-20 mt-3 lg:hidden'>
+                                                <div onClick={hundleClicClose360} className='flex items-center gap-1 cursor-pointer w-20 mt-3 lg:hidden'>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#434040" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                                         <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
                                                     </svg>
