@@ -12,22 +12,18 @@ function Em(props){
 
     useEffect(()=>{
         function PromiseFC(){
-            getOtenerDatos()
+            const starCountCor = ref(appVector, 'em');
+            onValue(starCountCor, (snapshot) => {
+                if (snapshot.exists()) {
+                    setState(snapshot.val())
+                    setData(snapshot.val().features)
+                } else {
+                    console.log("error")
+                }
+            });
         }
         return PromiseFC()
     },[])
-
-    const getOtenerDatos = cache(async (e)=>{
-        const starCountCor = ref(appVector, 'em');
-        onValue(starCountCor, (snapshot) => {
-            if (snapshot.exists()) {
-                setState(snapshot.val())
-                setData(snapshot.val().features)
-            } else {
-                console.log("error")
-            }
-        });
-    })
 
     function Popup({ feature }){
         let popupContent;
@@ -73,7 +69,7 @@ function Em(props){
                     {
                         data.map((item)=>{
                             if(item.properties.em === props.em){
-                                return <GeoJSON data={item} onEachFeature={onEachFeature} pointToLayer={pointToLayer} />
+                                return <GeoJSON key={item.properties.id} data={item} onEachFeature={onEachFeature} pointToLayer={pointToLayer} />
                             }
                         })
                     }

@@ -11,23 +11,19 @@ function Componentes(props){
 
     useEffect(()=>{
         function PromiseFC(){
-            getOtenerDatos()
+            const starCountCor = ref(appVector, 'componentes');
+            onValue(starCountCor, (snapshot) => {
+                if (snapshot.exists()) {
+                    setState(snapshot.val())
+                    setData(snapshot.val().features)
+                } else {
+                    console.log("error")
+                }
+            });
         }
         return PromiseFC()
     },[])
-
-    const getOtenerDatos = cache(async (e)=>{
-        const starCountCor = ref(appVector, 'componentes');
-        onValue(starCountCor, (snapshot) => {
-            if (snapshot.exists()) {
-                setState(snapshot.val())
-                setData(snapshot.val().features)
-            } else {
-                console.log("error")
-            }
-        });
-    })
-
+    
     const colorOptions = (atribute)=>{
         return atribute === "Área de Estudio" ? '#3498DB':
                atribute === "Área de Influencia Directa Ambiental" ? '#DC7633':
@@ -70,7 +66,7 @@ function Componentes(props){
                     {
                         data.map((item)=>{
                             if(item.properties.comp === props.Component){
-                                return <GeoJSON data={item} onEachFeature={onEachFeature} style={(feature)=>{
+                                return <GeoJSON key={item.properties.id} data={item} onEachFeature={onEachFeature} style={(feature)=>{
                                     return {
                                             color:colorOptions(feature.properties.comp),
                                             weight: 2,

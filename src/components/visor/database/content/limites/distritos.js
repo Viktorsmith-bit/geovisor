@@ -11,22 +11,18 @@ function Distritos(){
     
     useEffect(()=>{
         function PromiseFC(){
-            getOtenerDatos()
+            const starCountCor = ref(appVector, 'distritos');
+            onValue(starCountCor, (snapshot) => {
+                if (snapshot.exists()) {
+                    setState(snapshot.val())
+                    setData(snapshot.val().features)
+                } else {
+                    console.log("error")
+                }
+            });
         }
         return PromiseFC()
     },[])
-
-    const getOtenerDatos = cache(async (e)=>{
-        const starCountCor = ref(appVector, 'distritos');
-        onValue(starCountCor, (snapshot) => {
-            if (snapshot.exists()) {
-                setState(snapshot.val())
-                setData(snapshot.val().features)
-            } else {
-                console.log("error")
-            }
-        });
-    })
 
     const blackOptionsPermafrost = {color:"#D5F5E3"}
     
