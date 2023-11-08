@@ -24,19 +24,6 @@ function Componentes(props){
         return PromiseFC()
     },[])
     
-    const colorOptions = (atribute)=>{
-        return atribute === "Área de Estudio" ? '#3498DB':
-               atribute === "Área de Influencia Directa Ambiental" ? '#DC7633':
-               atribute === "Área de Influencia Indirecta Ambiental" ? '#2ECC71 ':
-               atribute === "Área del Proyecto" ? '#F7DC6F':
-               atribute === "Áreas con CIRA" ? '#34495E':
-               atribute === "Unidades de vegetación" ? '#AED6F1':
-               atribute === "Unidades de vegetación 2" ? '#D2B4DE':
-               atribute === "Restos Arqueológicos" ? '#AEB6BF':
-               atribute === "Sitios Arqueológicos" ? '#D98880':
-               atribute === "Área de componentes aprobados" ? '#873600':null
-    }
-    
     const Popup = ({ feature }) => {
         let popupContent;
         if (feature.properties && feature.properties.popupContent) {
@@ -59,6 +46,19 @@ function Componentes(props){
         layer.bindPopup(popupContent);
     };
 
+    const colorOptions = (atribute)=>{
+        return atribute === "Área de Estudio" ? '#3498DB':
+               atribute === "Área de Influencia Directa Ambiental" ? '#DC7633':
+               atribute === "Área de Influencia Indirecta Ambiental" ? '#2ECC71 ':
+               atribute === "Área del Proyecto" ? '#F7DC6F':
+               atribute === "Áreas con CIRA" ? '#34495E':
+               atribute === "Unidades de vegetación" ? '#AED6F1':
+               atribute === "Unidades de vegetación 2" ? '#D2B4DE':
+               atribute === "Restos Arqueológicos" ? '#AEB6BF':
+               atribute === "Sitios Arqueológicos" ? '#D98880':
+               atribute === "Área de componentes aprobados" ? '#873600':null
+    }
+    
     return(
         <Fragment>
             {

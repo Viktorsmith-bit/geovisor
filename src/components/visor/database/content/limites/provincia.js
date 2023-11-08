@@ -23,8 +23,6 @@ function Provincia(){
         }
         return PromiseFC()
     },[])
-
-    const blackOptionsPermafrost = {color:"#FCF3CF"}
     
     const Popup = ({ feature }) => {
         let popupContent;
@@ -51,13 +49,15 @@ function Provincia(){
         layer.bindPopup(popupContent);
     };
 
+    const styleOptions = {color:"white",weight:1,fillOpacity: 0.1}
+
     return(
         <Fragment>
             {
-                state === undefined?<Loading />:<GeoJSON data={data} onEachFeature={onEachFeature} style={blackOptionsPermafrost} />
+                state === undefined?<Loading />:<GeoJSON data={data} onEachFeature={onEachFeature} style={styleOptions} />
             }
         </Fragment>
     );
 }
 
-export default React.memo(Provincia);
+export default Provincia;

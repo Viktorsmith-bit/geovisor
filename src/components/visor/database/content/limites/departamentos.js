@@ -23,8 +23,6 @@ function Departamentos(){
         }
         return PromiseFC()
     },[])
-
-    const blackOptionsPermafrost = {color:"#EDBB99"}
     
     const Popup = ({ feature }) => {
         let popupContent;
@@ -51,13 +49,15 @@ function Departamentos(){
         layer.bindPopup(popupContent);
     };
 
+    const styleOptions = {color:"white",weight:2,fillOpacity: 0.1}
+
     return(
         <Fragment>
             {
-                state === undefined?<Loading />:<GeoJSON data={data} onEachFeature={onEachFeature} style={blackOptionsPermafrost} />
+                state === undefined?<Loading />:<GeoJSON data={data} onEachFeature={onEachFeature} style={styleOptions} />
             }
         </Fragment>
     );
 }
 
-export default React.memo(Departamentos);
+export default Departamentos;
