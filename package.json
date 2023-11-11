@@ -24,7 +24,7 @@
     "react-esri-leaflet": "^2.0.1",
     "react-leaflet": "^4.2.1",
     "recharts": "^2.7.2",
-    "xlsx": "^0.18.5"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",

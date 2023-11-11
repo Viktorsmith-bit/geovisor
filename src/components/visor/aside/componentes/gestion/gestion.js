@@ -1,9 +1,22 @@
-import { Fragment, useState} from "react";
+import { useState, useCallback} from "react";
 import Filtro from './filtro/filtro';
 import Datos from "./datos/datos";
-import XLSX from "xlsx";
+import { read, utils , writeFile} from 'xlsx';
 
 export default function Gestion(props){
+    const [pres, setPres] = useState([
+        { Colaborador: "Luis Ferrer", Disfraz: 'Jocker, tú no participas en la premiación xd' },
+        { Colaborador: "Toñito", Disfraz: 'Sin disfraz' },
+        { Colaborador: "Guisela Pecho", Disfraz: 'Ratoncita' },
+        { Colaborador: "Katherine Jara", Disfraz: 'Fiona, cuidado con las rodillas xd' },
+        { Colaborador: "Isabel Mendizabal", Disfraz: 'Gata con botas' },
+        { Colaborador: "Luz Ojeda", Disfraz: 'Micky Mouse' },
+        { Colaborador: "Luz Anampa", Disfraz: 'Caperucita Roja' },
+        { Colaborador: "Walter Cerna", Disfraz: 'Screem, ya deja el celular xd' },
+        { Colaborador: "Víctor Medina", Disfraz: 'Aburrido xd' },
+        { Colaborador: "Isaac Bravo", Disfraz: 'Jeson chiquito xd' }
+      ]);
+    
     const [filtro, setFiltro] = useState('closeFil')
     const [fuente, setFuente] = useState('Calidad de Agua y Efluentes');
     const [tipo, setTipo] = useState('Agua subterránea')
@@ -89,6 +102,13 @@ export default function Gestion(props){
         setFiltro(filtro === "openFil"?'closeFil':'openFil')
     }
 
+    const exportFile = useCallback(() => {
+        const ws = utils.json_to_sheet(pres);
+        const wb = utils.book_new();
+        utils.book_append_sheet(wb, ws, "Data");
+        writeFile(wb, "GSI-Halloween.xlsx");
+    }, [pres]);
+
     return(
         <div className={`${props.ges === 'openGes'?'bloque':'hidden'}`}>
             <Filtro filtro={filtro} captarCambiosFuente={captarCambiosFuente} captarCambiosEsta={captarCambiosEsta}
@@ -126,7 +146,7 @@ export default function Gestion(props){
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(40,40,40)" className="bi bi-play-fill" viewBox="0 0 16 16">
                                 <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                             </svg>
-                            <h1 className="text-sm">Exportar a excel</h1>
+                            <h1 onClick={exportFile} className="text-sm">Exportar a excel</h1>
                         </div>
                     </div>
                     <div className="flex items-center h-10 px-4 border-b border-gray-200">
