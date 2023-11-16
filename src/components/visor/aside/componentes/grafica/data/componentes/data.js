@@ -15,12 +15,12 @@ export function Data(props){
                                             }
                                         }
                                     }).map((item)=>{
-                                    return {name: item.properties.ano + '-' + item.properties.em, Monitoreo:parseFloat(item.properties.medi_val), Eca:parseFloat(item.properties.eca_val)}
+                                    return {name: item.properties.ano + '-' + item.properties.em, Monitoreo:parseFloat(item.properties.medi_val), ECA:parseFloat(item.properties.eca_val)}
                                 })
                             }>
                             <CartesianGrid strokeDasharray="3 3" />
                             <Line type="monotone" dataKey="Monitoreo" stroke="#8884d8" />
-                            <Line type="monotone" dataKey="Eca" stroke="#ff7300" />
+                            <Line type="monotone" dataKey="ECA" stroke="#ff7300" />
                             <ReferenceLine x="CO" stroke="green" label="Max PV PAGE" />
                             <Tooltip cursor={false} />
                             <XAxis dataKey="name" padding={{left:10,right:10}} />
@@ -50,12 +50,12 @@ export function Data2(props){
                                             }
                                         }
                                     }).map((item)=>{
-                                        return {name: item.properties.ano + '-' + item.properties.em, Monitoreo:parseFloat(item.properties.medi_val), Eca:parseFloat(item.properties.eca_val)}
+                                        return {name: item.properties.ano + '-' + item.properties.em, Monitoreo:parseFloat(item.properties.medi_val), ECA:parseFloat(item.properties.eca_val)}
                                 })
                             }>
                             <CartesianGrid strokeDasharray="3 3" />
                             <Line type="monotone" dataKey="Monitoreo" stroke="#8884d8" />
-                            <Line type="monotone" dataKey="Eca" stroke="#ff7300" />
+                            <Line type="monotone" dataKey="ECA" stroke="#ff7300" />
                             <ReferenceLine x="name" stroke="green" label="Max PV PAGE" />
                             <Tooltip cursor={false} />
                             <XAxis dataKey="name" padding={{left:10,right:10}} />
@@ -85,12 +85,12 @@ export function Data3(props){
                                             }
                                         }
                                     }).map((item)=>{
-                                        return {name: item.properties.ano + '-' + item.properties.em, Monitoreo:parseFloat(item.properties.medi_val), Eca:parseFloat(item.properties.eca_val)}
+                                        return {name: item.properties.ano + '-' + item.properties.em, Monitoreo:parseFloat(item.properties.medi_val), ECA:parseFloat(item.properties.eca_val)}
                                 })
                             }>
                             <CartesianGrid strokeDasharray="3 3" />
                             <Line type="monotone" dataKey="Monitoreo" stroke="#8884d8" />
-                            <Line type="monotone" dataKey="Eca" stroke="#ff7300" />
+                            <Line type="monotone" dataKey="ECA" stroke="#ff7300" />
                             <ReferenceLine x="name" stroke="green" label="Max PV PAGE" />
                             <Tooltip cursor={false} />
                             <XAxis dataKey="name" padding={{left:10,right:10}} />

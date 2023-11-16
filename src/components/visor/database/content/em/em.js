@@ -38,8 +38,8 @@ function Em(props){
                 <h1><sapan className='font-bold'>Estación: </sapan> {feature.properties.em}</h1>
                 <h1><sapan className='font-bold'>Altitud: </sapan> {feature.properties.alt}</h1>
                 <div className='flex items-center gap-2 h-8'>
-                    <a target="_blank" href='https://walshperu-my.sharepoint.com/personal/vmedina_walshp_com_pe/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fvmedina%5Fwalshp%5Fcom%5Fpe%2FDocuments%2FResoluciones%2FRD%20013%2D2023%2DSENACE%2DPE%2DDEAR%2Epdf&parent=%2Fpersonal%2Fvmedina%5Fwalshp%5Fcom%5Fpe%2FDocuments%2FResoluciones'>
-                        <h1 className='text-blue underline'>Ver ensayo</h1>
+                    <a target="_blank" href='https://walshperu-my.sharepoint.com/personal/vmedina_walshp_com_pe/_layouts/15/guestaccess.aspx?share=ERD5sTevkIRKg0j0PwHO4hIB6CIn2jgCMzChIK6Zeo0K3A&e=Rbn0ob'>
+                        <h1 className='text-blue underline'>Ver informe ensayo</h1>
                     </a>
                 </div>
             </div>
