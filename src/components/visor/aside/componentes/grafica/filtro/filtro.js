@@ -1,5 +1,5 @@
 import { cache, useEffect } from 'react'
-import {Fragment, useRef, useState} from "react";
+import {Fragment, useState} from "react";
 import {ref, onValue, set} from "firebase/database";
 import {app} from '../../../../../../../firebase/database';
 import Datos from '../data/datos';
@@ -54,6 +54,7 @@ export default function Filtro(){
             }
         });
     })
+    console.log(valor)
     function captarCambiosFecha(e){
         e.preventDefault()
         if( tipo.tipo1 === 'agua_subterranea'){

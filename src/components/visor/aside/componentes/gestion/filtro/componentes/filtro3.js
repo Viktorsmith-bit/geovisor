@@ -1,13 +1,20 @@
-import { Fragment} from "react";
+import { useState} from "react";
 
 export default function Filtro3(props){
+    const [tipo, setTipo] = useState('closeTipo')
+    function openCloseTipo(e){e.preventDefault(),setTipo(tipo === 'openTipo'?'closeTipo':'openTipo')}
+
     return(
-        <div className={`${props.fuente === 'Calidad del Suelo'?'bloque':'hidden'}`}>
-            <h1 className="text-white text-sm mt-5">Tipo</h1>
-            <select name="select" onChange={props.captarCambiosTipo} className='w-full text-white text-sm px-2 h-8 rounded-sm mt-2 cursor-pointer input' style={{backgroundColor:'rgb(60,60,60)'}}>
-                <option value="seleccion">Seleccione una opción</option>
-                <option value="Suelo">Suelo</option>
-            </select>
+        <div className={`${props.fill === 'suelo'?'bloque':'hidden'}`}>
+            <div className='border-color mt-4'>
+                <h1 onClick={openCloseTipo} className="w-full px-2 py-2 rounded-sm cursor-pointer text-sm text-white text-sm back-gris">Tipo</h1>
+                <div className={`flex flex-col gap-2.5 p-3 ${tipo === 'closeTipo'?'hidden':'bloque'}`}>
+                    <div className="flex items-center gap-2">
+                        <div id="calidad_suelo" onClick={props.openCloseTipo3} className={`w-4 h-4 rounded-sm border-color cursor-pointer ${props.tipo3 === 'calidad_suelo'?'back-gris':null}`}></div>
+                        <h1 id="calidad_suelo" onClick={props.openCloseTipo3} className="text-sm text-white text-sm cursor-pointer">Suelo</h1>
+                    </div>
+                </div>
+            </div>
             <div className="flex items-center gap-2 mt-5">
                 <div className="flex-1">
                     <h1 className="text-white text-sm">ECA</h1>

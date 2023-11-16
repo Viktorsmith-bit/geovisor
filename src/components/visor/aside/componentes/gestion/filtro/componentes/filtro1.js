@@ -1,15 +1,30 @@
 import { Fragment} from "react";
 
+import { useState } from "react";
 export default function Filtro1(props){
+    const [tipo, setTipo] = useState('closeTipo')
+    function openCloseTipo(e){e.preventDefault(),setTipo(tipo === 'openTipo'?'closeTipo':'openTipo')}
+
     return(
-        <div className={`${props.fuente === 'Calidad de Agua y Efluentes'?'bloque':'hidden'}`}>
-            <h1 className="text-white text-sm mt-5">Tipo</h1>
-            <select name="select" onChange={props.captarCambiosTipo} className='w-full text-white text-sm px-2 h-8 rounded-sm mt-2 cursor-pointer input' style={{backgroundColor:'rgb(60,60,60)'}}>
-                <option value="Agua subterránea" defaultValue>Agua subterránea</option>
-                <option value="Agua superficial">Agua superficial</option>
-                <option value="Puntos de vertimento">Puntos de vertimento</option>
-            </select>
-            <div className={`${props.tipo === 'Agua superficial'?'bloque':'hidden'}`}>
+        <div className={`${props.fill === 'agua'?'bloque':'hidden'}`}>
+            <div className='border-color mt-4'>
+                <h1 onClick={openCloseTipo} className="w-full px-2 py-2 rounded-sm cursor-pointer text-sm text-white text-sm back-gris">Tipo</h1>
+                <div className={`flex flex-col gap-2.5 p-3 ${tipo === 'closeTipo'?'hidden':'bloque'}`}>
+                    <div className="flex items-center gap-2">
+                        <div id="agua_subterranea" onClick={props.openCloseTipo1} className={`w-4 h-4 rounded-sm border-color cursor-pointer ${props.tipo1 === 'agua_subterranea'?'back-gris':null}`}></div>
+                        <h1 id="agua_subterranea" onClick={props.openCloseTipo1} className="text-sm text-white text-sm cursor-pointer">Agua subterránea</h1>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <div id="agua_superficial" onClick={props.openCloseTipo1} className={`w-4 h-4 rounded-sm border-color cursor-pointer ${props.tipo1 === 'agua_superficial'?'back-gris':null}`}></div>
+                        <h1 id="agua_superficial" onClick={props.openCloseTipo1} className="text-sm text-white text-sm cursor-pointer">Agua superficial</h1>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <div id="puntos_vertimento" onClick={props.openCloseTipo1} className={`w-4 h-4 rounded-sm border-color cursor-pointer ${props.tipo1 === 'puntos_vertimento'?'back-gris':null}`}></div>
+                        <h1 id="puntos_vertimento" onClick={props.openCloseTipo1} className="text-sm text-white text-sm cursor-pointer">Puntos de vertimento</h1>
+                    </div>
+                </div>
+            </div>
+            <div className={`${props.tipo1 === 'agua_superficial'?'bloque':'hidden'}`}>
                 <h1 className="text-white text-sm mt-5">Sub tipo</h1>
                 <select name="select" onChange={props.captarCambiosSubTipo} className='w-full text-white text-sm px-2 h-8 rounded-sm mt-2 cursor-pointer input' style={{backgroundColor:'rgb(60,60,60)'}}>
                     <option value="todoSub" defaultValue>Todo</option>
@@ -20,7 +35,7 @@ export default function Filtro1(props){
                     <option value="Parámetro Inorgánico">Parámetro Inorgánico</option>
                 </select>
             </div>
-            <div className={`${props.tipo === 'Agua superficial'?'bloque':'hidden'}`}>
+            <div className={`${props.tipo1 === 'agua_superficial'?'bloque':'hidden'}`}>
                 <h1 className="text-white text-sm mt-5">Temporada</h1>
                 <select name="select" onChange={props.captarCambiosTemp} className='w-full text-white text-sm px-2 h-8 rounded-sm mt-2 cursor-pointer input' style={{backgroundColor:'rgb(60,60,60)'}}>
                     <option value="todoTemp" defaultValue>Todo</option>
@@ -40,18 +55,18 @@ export default function Filtro1(props){
                 </div>
                 <div className="flex-1">
                     <h1 className="text-white text-sm">Estación</h1>
-                    <select name="select" onChange={props.captarCambiosEsta} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo === 'Agua subterránea'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
+                    <select name="select" onChange={props.captarCambiosEsta} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo1 === 'agua_subterranea'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
                         <option value="todoEm">Todo</option>
                         <option value="TA-12">TA-12</option>
                     </select>
-                    <select name="select" onChange={props.captarCambiosEsta} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo === 'Agua superficial'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
+                    <select name="select" onChange={props.captarCambiosEsta} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo1 === 'agua_superficial'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
                         <option value="todoEm" defaultValue>Todo</option>
                         <option value="R-1">R-1</option>
                         <option value="R-2" >R-2</option>
                         <option value="R-3" >R-3</option>
                         <option value="R-7" >R-7</option>
                     </select>
-                    <select name="select" onChange={props.captarCambiosEsta} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo  === 'Puntos de vertimento'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
+                    <select name="select" onChange={props.captarCambiosEsta} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo1  === 'puntos_vertimento'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
                         <option value="todoEm" defaultValue>Todo</option>
                         <option value="PTARD T1">PTARD T1</option>
                         <option value="PTARD T2" >PTARD T2</option>
@@ -61,18 +76,18 @@ export default function Filtro1(props){
             <div className="flex items-center gap-2 mt-5">
                 <div className="flex-1">
                     <h1 className="text-white text-sm">Año</h1>
-                    <select name="select" onChange={props.captarCambiosFecha} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo  === 'Agua subterránea'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
+                    <select name="select" onChange={props.captarCambiosFecha} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo1  === 'agua_subterranea'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
                         <option value="todoAno" defaultValue>Todo</option>
                         <option value="2016">2016</option>
                         <option value="2017">2017</option>
                         <option value="2018">2018</option>
                     </select>
-                    <select name="select" onChange={props.captarCambiosFecha} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo  === 'Agua superficial'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
+                    <select name="select" onChange={props.captarCambiosFecha} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo1  === 'agua_superficial'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
                         <option value="todoAno" defaultValue>Todo</option>
                         <option value="2018">2018</option>
                         <option value="2019">2019</option>
                     </select>
-                    <select name="select" onChange={props.captarCambiosFecha} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo  === 'Puntos de vertimento'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
+                    <select name="select" onChange={props.captarCambiosFecha} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo1  === 'puntos_vertimento'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
                         <option value="todoAno" defaultValue>Todo</option>
                         <option value="2016" >2016</option>
                         <option value="2017">2017</option>
@@ -80,20 +95,20 @@ export default function Filtro1(props){
                     </select>
                 </div>
                 <div className="flex-1">
-                    <h1 className="text-white text-sm">{props.tipo === 'Agua subterránea'?'Trimestre':'Mes'}</h1>
-                    <select name="select" onChange={props.captarCambiosMes} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo  === 'Agua subterránea'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
+                    <h1 className="text-white text-sm">{props.tipo1 === 'agua_subterranea'?'Trimestre':'Mes'}</h1>
+                    <select name="select" onChange={props.captarCambiosMes} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo1  === 'agua_subterranea'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
                         <option value="todoMes" defaultValue>Todo</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
-                    <select name="select" onChange={props.captarCambiosMes} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo  === 'Agua superficial'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
+                    <select name="select" onChange={props.captarCambiosMes} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo1  === 'agua_superficial'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
                         <option value="todoMes" defaultValue>Todo</option>
                         <option value="Setiembre">Setiembre</option>
                         <option value="Marzo">Marzo</option>
                     </select>
-                    <select name="select" onChange={props.captarCambiosMes} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo  === 'Puntos de vertimento'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
+                    <select name="select" onChange={props.captarCambiosMes} className={`w-full text-white text-sm px-2 h-8 rounded-sm cursor-pointer input mt-2 ${props.tipo1  === 'puntos_vertimento'?'bloque':'hidden'}`} style={{backgroundColor:'rgb(60,60,60)'}}>
                         <option value="todoMes">Todo</option>
                         <option value="Enero">Enero</option>
                         <option value="Febrero">Febrero</option>
@@ -111,9 +126,9 @@ export default function Filtro1(props){
                 </div>
             </div>
             <h1 className="text-white text-sm mt-5">Parámetros</h1>
-            <AguaSubParam captarCambiosParam={props.captarCambiosParam} tipo={props.tipo} />
-            {props.tipo  === 'Agua superficial'?<AguaSupParam captarCambiosParam={props.captarCambiosParam} tipo={props.tipo} subTipo={props.subTipo}/>:null}
-            <PuntosVertimento captarCambiosParam={props.captarCambiosParam} tipo={props.tipo}/>
+            <AguaSubParam captarCambiosParam={props.captarCambiosParam} tipo1={props.tipo1} />
+            {props.tipo1  === 'agua_superficial'?<AguaSupParam captarCambiosParam={props.captarCambiosParam} tipo1={props.tipo1} subTipo={props.subTipo}/>:null}
+            <PuntosVertimento captarCambiosParam={props.captarCambiosParam} tipo1={props.tipo1}/>
         </div>
     );
 }
@@ -121,7 +136,7 @@ export default function Filtro1(props){
 function AguaSubParam(props){
     return(
         <Fragment>
-            <select name="select" onChange={props.captarCambiosParam} className={`w-full text-sm px-2 h-8 text-white mt-2 cursor-pointer input ${props.tipo  === 'Agua subterránea'?'bloque':'hidden'} `} style={{backgroundColor:'rgb(60,60,60)'}}>
+            <select name="select" onChange={props.captarCambiosParam} className={`w-full text-sm px-2 h-8 text-white mt-2 cursor-pointer input ${props.tipo1  === 'agua_subterranea'?'bloque':'hidden'} `} style={{backgroundColor:'rgb(60,60,60)'}}>
                 <option value="todoParam" defaultValue>Todo</option>
                 <option value="Caudal" >1. Caudal</option>
                 <option value="Conductividad">2. Conductividad</option>
@@ -223,7 +238,7 @@ function AguaSupParam(props){
 function PuntosVertimento(props){
     return(
         <Fragment>
-            <select name="select" onChange={props.captarCambiosParam} className={`w-full text-sm px-2 h-8 text-white mt-2 cursor-pointer input ${props.tipo === 'Puntos de vertimento'?'bloque':'hidden'} `} style={{backgroundColor:'rgb(60,60,60)'}}>
+            <select name="select" onChange={props.captarCambiosParam} className={`w-full text-sm px-2 h-8 text-white mt-2 cursor-pointer input ${props.tipo1 === 'puntos_vertimento'?'bloque':'hidden'} `} style={{backgroundColor:'rgb(60,60,60)'}}>
                 <option value="todoParam" defaultValue>Todo</option>
                 <option value="pH" >1. pH </option>
                 <option value="Temperatura">2. Temperatura</option>

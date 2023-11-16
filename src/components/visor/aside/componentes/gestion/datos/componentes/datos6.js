@@ -2,7 +2,7 @@ import { Fragment, useRef, useEffect, useState} from "react";
 import {ref, onValue, set} from "firebase/database";
 import {app} from '../../../../../../../../firebase/database';
 
-export default function Datos6(props){
+export function Datos6(props){
     const [state, setState] = useState();
     let valor = useRef()
 
@@ -33,9 +33,9 @@ export default function Datos6(props){
                                         if(props.eca === 'excede'?parseFloat(item.properties.medi_val ) >= parseFloat(item.properties.eca_val):props.eca === 'casi'? parseFloat(item.properties.medi_val) >= parseFloat(item.properties.eca_val*80/100) & parseFloat(item.properties.medi_val) < parseFloat(item.properties.eca_val):props.eca === 'noExcede'?parseFloat(item.properties.medi_val ) < parseFloat(item.properties.eca_val*70/100):item.properties.medi){
                                             return <div key={parseInt(item.properties.id)} className={`flex mb-2 py-0.5 ${parseFloat(item.properties.medi_val) >= parseFloat(item.properties.eca_val)?"bg-red-200 rounded-sm":parseFloat(item.properties.medi_val) >= parseFloat(item.properties.eca_val*80/100)?"bg-orange-200 rounded-sm":"bg-green-200 rounded-sm"}`}>
                                                     <h1 className="text-sm w-20 px-2">{item.properties.ano}</h1>
-                                                    <h1 className="text-sm w-48 ">{item.properties.param}</h1>
-                                                    <h1 className="text-sm w-32">{item.properties.medi}</h1>
-                                                <h1 className="text-sm w-32">{item.properties.eca}</h1>
+                                                    <h1 className="text-sm w-48 text-center">{item.properties.param}</h1>
+                                                    <h1 className="text-sm w-32 text-center">{item.properties.medi}</h1>
+                                                <h1 className="text-sm w-32 text-center">{item.properties.eca}</h1>
                                             </div>
                                         }
                                     }

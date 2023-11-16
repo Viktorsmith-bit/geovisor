@@ -31,12 +31,14 @@ export default function Index(props){
         openCloseTor10,} = useContextCapas()
     const {hundleClicOpenClosePanam, panam} = useContextCapasMap()
     const [proy, setProy] = useState('close')
-    const [head, setHead] = useState({head1:'open',head2:'close',head3:'close'})
+    const [head, setHead] = useState({head1:'close',head2:'close',head3:'close',head4:'close',head5:'close'})
     const [capas, setCapas] = useState({capa1:'close',capa2:'close',capa3:'close',capa4:'close',capa5:'close',capa6:'close'})
 
     function openCloseHead1(e){e.preventDefault(), setHead({...head, head1:head.head1 === 'open'?'close':'open'})}
     function openCloseHead2(e){e.preventDefault(), setHead({...head, head2:head.head2 === 'open'?'close':'open'})}
     function openCloseHead3(e){e.preventDefault(), setHead({...head, head3:head.head3 === 'open'?'close':'open'})}
+    function openCloseHead4(e){e.preventDefault(), setHead({...head, head4:head.head4 === 'open'?'close':'open'})}
+    function openCloseHead5(e){e.preventDefault(), setHead({...head, head5:head.head5 === 'open'?'close':'open'})}
     function openCloseCapa1(e){e.preventDefault(), setCapas({...capas,capa1:capas.capa1 === 'open'?'close':'open'})}
     function openCloseCapa2(e){e.preventDefault(), setCapas({...capas,capa2:capas.capa2 === 'open'?'close':'open'})}
     function openCloseCapa3(e){e.preventDefault(), setCapas({...capas,capa3:capas.capa3 === 'open'?'close':'open'})}
@@ -46,14 +48,14 @@ export default function Index(props){
     return(
         <Fragment>
             <LayerGroup>
-                <h1 className="flex items-center px-4 text-sm text-color bg-gray-200 w-full h-8">Límites políticos</h1>
-                <Input nombre={'Departamentales'} estado={lim.dep} evento={openCloseDep} />
-                <Input nombre={'Provinciales'} estado={lim.prov} evento={openCloseProv} />
-                <Input nombre={'Distritales'} estado={lim.dist} evento={openCloseDist} />
+                <LayerHeader nombre={'Límites políticos'} estado={head.head4} evento={openCloseHead4}>
+                    <Input nombre={'Departamentales'} color={'blue'} estado={lim.dep} evento={openCloseDep} />
+                    <Input nombre={'Provinciales'} color={'green'} estado={lim.prov} evento={openCloseProv} />
+                    <Input nombre={'Distritales'} color={'brown'} estado={lim.dist} evento={openCloseDist} />
+                </LayerHeader>
             </LayerGroup>
             <LayerGroup>
-                <h1 className="flex items-center px-4 text-sm text-color bg-gray-200 w-full h-8">Componentes</h1>
-                <Layer nombre={'Unidad Minera Toromocho'} estado={proy} evento={openCloseProy}>
+                <LayerHeader nombre={'Unidad Minera Toromocho'} estado={proy} evento={openCloseProy}>
                     <Input nombre={'Área de Estudio'} estado={tor.tor1} evento={openCloseTor1} /> 
                     <Input nombre={'Área de Influencia Directa Ambiental'} estado={tor.tor2} evento={openCloseTor2} /> 
                     <Input nombre={'Área de Influencia Indirecta Ambiental'} estado={tor.tor3} evento={openCloseTor3} />
@@ -64,14 +66,14 @@ export default function Index(props){
                     <Input nombre={'Restos Arqueológicos'} estado={tor.tor8} evento={openCloseTor8} /> 
                     <Input nombre={'Sitios Arqueológicos'} estado={tor.tor9} evento={openCloseTor9} /> 
                     <Input nombre={'Área de componentes aprobados'} estado={tor.tor10} evento={openCloseTor10} /> 
-                </Layer>
+                </LayerHeader>
             </LayerGroup>
             <LayerGroup>
-                <h1 className="flex items-center px-4 text-sm text-color bg-gray-200 w-full h-8">Fotografías panorámicas</h1>
-                <Input nombre={'Ubicación en 360°'} estado={panam} evento={hundleClicOpenClosePanam} />
+                <LayerHeader nombre={'Fotografías panorámicas'} estado={head.head5} evento={openCloseHead5}>
+                    <Input nombre={'Ubicación en 360°'} estado={panam} evento={hundleClicOpenClosePanam} />
+                </LayerHeader>
             </LayerGroup>
             <LayerGroup>
-                <h1 className="flex items-center px-4 text-sm text-color bg-gray-200 w-full h-8">Estaciones de monitoreos</h1>
                 <LayerHeader id="calidad" nombre={'Calidad del Agua y Efluentes'} estado={head.head1} evento={openCloseHead1}>
                     <Layer nombre={'Agua subterránea'} estado={capas.capa1} evento={openCloseCapa1}>
                         <Input nombre={'EM TA-12'} estado={layer.layer1} evento={openCloseLayer1} /> 
@@ -93,7 +95,7 @@ export default function Index(props){
                 </LayerHeader>
                 <LayerHeader nombre={'Calidad del Suelo'} estado={head.head3} evento={openCloseHead3}>
                     <Layer nombre={'Suelo'} estado={capas.capa6} evento={openCloseCapa6}>
-                        <Input nombre={'OPT-05-01'} estado={layer.layer10} evento={openCloseLayer12} />
+                        <Input nombre={'OPT-05-01'} estado={layer.layer12} evento={openCloseLayer12} />
                         <Input nombre={'OPT-05-02'} estado={layer.layer13} evento={openCloseLayer13} /> 
                         <Input nombre={'OPT-07-06'} estado={layer.layer14} evento={openCloseLayer14} /> 
                         <Input nombre={'OPT-07-08'} estado={layer.layer15} evento={openCloseLayer15} /> 
@@ -109,7 +111,7 @@ export default function Index(props){
 
 function LayerGroup({children}){
     return(
-        <div className="pb-2 mt-2 border-r border-t  border-l  border-b border-gray-400">
+        <div className="section">
             {children}
         </div>
     );
@@ -117,7 +119,7 @@ function LayerGroup({children}){
 
 function LayerHeader({estado, evento, nombre, children}){
     return(
-        <div className="px-4 mt-2">
+        <div className={`px-4 border-b border-gray-200 py-3.5`}>
             <div className="flex items-center gap-1">
                 <OpenCloseComponent evento={evento} estado={estado} />
                 <h1 onClick={evento} className="text-sm text-color cursor-pointer">{nombre}</h1>
@@ -159,7 +161,7 @@ function OpenCloseComponent(props){
     );
 }
 
-function Input({estado, evento, nombre}){
+function Input({estado, evento, nombre, color}){
     return(
         <div className="px-4 mt-2">
             <div className="flex items-center gap-1">
