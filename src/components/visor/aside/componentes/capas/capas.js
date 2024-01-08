@@ -1,4 +1,4 @@
-import Index from "./componentes/content";
+import Index from "./componentes";
 export default function Capas(props){
     return(
         <div className={`absolute top-0 ${props.aside === 'close'?'right-14':'right-44'} h-screen w-80 lg:w-96 bg-white border-r border-gray-300 pt-36 ${props.capas === "closeCap"?'hidden':'bloque'}`} style={{zIndex:"1000"}}>
